@@ -98,14 +98,13 @@ const Contact = () => {
       // Find service label for email
       const serviceLabel = serviceOptions.find(opt => opt.value === sanitizedData.service)?.label || sanitizedData.service
 
-      // Prepare email template parameters
+      // Prepare email template parameters (matching EmailJS template variables)
       const templateParams = {
-        from_name: sanitizedData.name,
-        from_email: sanitizedData.email,
-        phone: sanitizedData.phone,
-        service: serviceLabel,
-        message: sanitizedData.message,
-        to_email: 'saristide99@gmail.com'
+        title: `Demande ${serviceLabel}`,
+        name: sanitizedData.name,
+        nom: sanitizedData.name,
+        email: sanitizedData.email,
+        message: `Service: ${serviceLabel}\nTéléphone: ${sanitizedData.phone}\n\n${sanitizedData.message}`
       }
 
       // Send email via EmailJS
