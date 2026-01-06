@@ -112,7 +112,7 @@ export const validateFormData = (data) => {
     errors.push('Adresse email invalide.');
   }
 
-  const validServices = ['site-vitrine', 'e-commerce', 'app-mobile', 'consulting', 'autre'];
+  const validServices = ['site-vitrine', 'e-commerce', 'app-mobile', 'consulting', 'plateforme-inscriptions', 'autre'];
   if (!data.service || !validServices.includes(data.service)) {
     errors.push('Veuillez sélectionner un service valide.');
   }
