@@ -21,7 +21,8 @@ const Footer = () => {
     { label: 'Développement Web' },
     { label: 'Apps Mobiles' },
     { label: 'Consulting Digital' },
-    { label: 'Maintenance' }
+    { label: 'Maintenance' },
+    { label: 'Plateforme d\'Inscriptions' }
   ]
 
   const socialLinks = [
@@ -87,7 +88,8 @@ const Footer = () => {
           <div className="footer-links">
             <h4>Contact</h4>
             <ul>
-              <li>Ouagadougou, Burkina Faso</li>
+              <li>Bobo Dioulasso, Burkina Faso</li>
+              <li>SC BP 1096 BOBO</li>
               <li>🇧🇫 +226 65 17 07 78</li>
               <li>🇨🇦 +1 819 219 0558</li>
               <li>saristide99@gmail.com</li>
