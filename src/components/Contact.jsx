@@ -11,7 +11,8 @@ import {
 } from '../utils/security'
 
 const contactInfo = [
-  { icon: MapPin, label: 'Adresse', value: 'Ouagadougou, Burkina Faso' },
+  { icon: MapPin, label: 'Adresse', value: 'Bobo Dioulasso, Burkina Faso' },
+  { icon: MapPin, label: 'B.P', value: 'SC BP 1096 BOBO' },
   { icon: Phone, label: 'Téléphone BF', value: '+226 65 17 07 78' },
   { icon: Phone, label: 'Téléphone CA', value: '+1 819 219 0558' },
   { icon: Mail, label: 'Email', value: 'saristide99@gmail.com' },
@@ -24,6 +25,7 @@ const serviceOptions = [
   { value: 'e-commerce', label: 'Site E-commerce' },
   { value: 'app-mobile', label: 'Application Mobile' },
   { value: 'consulting', label: 'Consulting Digital' },
+  { value: 'plateforme-inscriptions', label: 'Plateforme d\'Inscriptions' },
   { value: 'autre', label: 'Autre' }
 ]
 

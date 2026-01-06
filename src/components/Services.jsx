@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Monitor, Smartphone, BarChart3, Wrench } from 'lucide-react'
+import { Monitor, Smartphone, BarChart3, Wrench, Users } from 'lucide-react'
 
 const services = [
   {
@@ -49,6 +49,18 @@ const services = [
       'Sauvegardes automatiques',
       'Mises à jour régulières',
       'Support technique 24/7'
+    ]
+  },
+  {
+    number: '05',
+    icon: Users,
+    title: 'Plateforme d\'Inscriptions',
+    description: 'Ouverture à heure fixe, quota automatique, file d\'attente et anti-bot : une plateforme stable même au rush.',
+    features: [
+      'Anti-surcharge garantie',
+      'Quotas automatiques',
+      'File d\'attente intelligente',
+      'Jour J prêt'
     ]
   }
 ]
