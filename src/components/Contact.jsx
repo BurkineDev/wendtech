@@ -2,13 +2,19 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
-import { 
-  sanitizeInput, 
-  validateFormData, 
-  sanitizeFormData, 
+import emailjs from '@emailjs/browser'
+import {
+  sanitizeInput,
+  validateFormData,
+  sanitizeFormData,
   RateLimiter,
-  escapeHTML 
+  escapeHTML
 } from '../utils/security'
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const contactInfo = [
   { icon: MapPin, label: 'Adresse', value: 'Bobo Dioulasso, Burkina Faso' },
@@ -88,21 +94,41 @@ const Contact = () => {
     try {
       // Get sanitized data
       const sanitizedData = sanitizeFormData(formData)
-      
-      // Simulate API call (replace with your actual API endpoint)
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // Log for demonstration (remove in production)
-      console.log('Données sécurisées:', sanitizedData)
+
+      // Find service label for email
+      const serviceLabel = serviceOptions.find(opt => opt.value === sanitizedData.service)?.label || sanitizedData.service
+
+      // Prepare email template parameters
+      const templateParams = {
+        from_name: sanitizedData.name,
+        from_email: sanitizedData.email,
+        phone: sanitizedData.phone,
+        service: serviceLabel,
+        message: sanitizedData.message,
+        to_email: 'saristide99@gmail.com'
+      }
+
+      // Send email via EmailJS
+      if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY
+        )
+      } else {
+        // Fallback: log data if EmailJS not configured
+        console.log('EmailJS non configuré. Données du formulaire:', templateParams)
+      }
 
       // Success
       setStatus({
         type: 'success',
         messages: ['Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.']
       })
-      
+
       RateLimiter.recordAttempt()
-      
+
       // Reset form after delay
       setTimeout(() => {
         setFormData({ name: '', phone: '', email: '', service: '', message: '' })
@@ -110,9 +136,10 @@ const Contact = () => {
       }, 5000)
 
     } catch (error) {
+      console.error('Erreur envoi email:', error)
       setStatus({
         type: 'error',
-        messages: ['Une erreur est survenue. Veuillez réessayer.']
+        messages: ['Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.']
       })
     } finally {
       setIsSubmitting(false)
