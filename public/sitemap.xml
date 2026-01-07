@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wendtech.vercel.app/</loc>
+    <loc>https://www.wendtech.site/</loc>
     <lastmod>2025-01-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wendtech.vercel.app/#services</loc>
+    <loc>https://www.wendtech.site/#services</loc>
     <lastmod>2025-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://wendtech.vercel.app/#portfolio</loc>
+    <loc>https://www.wendtech.site/#portfolio</loc>
     <lastmod>2025-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wendtech.vercel.app/#apropos</loc>
+    <loc>https://www.wendtech.site/#apropos</loc>
     <lastmod>2025-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wendtech.vercel.app/#contact</loc>
+    <loc>https://www.wendtech.site/#contact</loc>
     <lastmod>2025-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
