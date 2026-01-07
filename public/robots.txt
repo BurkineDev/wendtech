@@ -1,11 +1,11 @@
 # Robots.txt for Wendtech
-# https://wendtech.vercel.app
+# https://www.wendtech.site
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://wendtech.vercel.app/sitemap.xml
+Sitemap: https://www.wendtech.site/sitemap.xml
 
 # Disallow admin/sensitive paths (if any in future)
 Disallow: /api/
