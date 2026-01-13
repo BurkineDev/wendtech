@@ -3,6 +3,11 @@ import { useInView } from 'react-intersection-observer'
 
 const clients = [
   {
+    name: 'Camelot Traiteur',
+    logo: '/clients/camelot.png',
+    sector: 'Traiteur & Livraison'
+  },
+  {
     name: 'GlobalPC',
     logo: '/clients/globalpc.webp',
     sector: 'Informatique'

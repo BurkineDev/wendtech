@@ -25,7 +25,7 @@ const Navbar = () => {
     { id: 'accueil', label: 'Accueil' },
     { id: 'services', label: 'Services' },
     { id: 'portfolio', label: 'Portfolio' },
-    { id: 'apropos', label: 'À Propos' },
+    { id: 'ebooks', label: 'Ebooks' },
     { id: 'contact', label: 'Contact' },
   ]
 
