@@ -7,6 +7,7 @@ import Services from './components/Services'
 import Pricing from './components/Pricing'
 import Portfolio from './components/Portfolio'
 import Clients from './components/Clients'
+import Ebooks from './components/Ebooks'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -35,6 +36,7 @@ function App() {
         <Portfolio />
         <Pricing />
         <Clients />
+        <Ebooks />
         <About />
         <Contact />
       </main>
