@@ -1573,3 +1573,102 @@ footer {
     flex-direction: column;
   }
 }
+
+/* ── Lead capture form ── */
+.lead-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.lead-box {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+}
+
+.lead-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.06);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lead-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+.lead-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.lead-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 5px;
+}
+.lead-header p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.lead-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--text-primary);
+  font-size: 0.93rem;
+  outline: none;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.lead-input:focus { border-color: rgba(0,240,255,0.5); }
+.lead-input::placeholder { color: var(--text-secondary); opacity: 0.65; }
+
+.lead-note {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  text-align: center;
+  margin: 0 0 14px;
+}
+
+.lead-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  text-align: center;
+}
+.lead-success h3 { font-size: 1.4rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+.lead-success p  { color: var(--text-secondary); margin: 0; }
+
+@media (max-width: 480px) {
+  .lead-box { padding: 28px 18px; }
+}
