@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Loader from './components/Loader'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -12,8 +13,9 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import BookPage from './components/BookPage'
 
-function App() {
+function HomePage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -43,6 +45,15 @@ function App() {
       <Footer />
       <WhatsAppButton />
     </>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/livre" element={<BookPage />} />
+    </Routes>
   )
 }
 

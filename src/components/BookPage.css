@@ -1,0 +1,1008 @@
+/* ============================================
+   BOOKPAGE - Styles dédiés à /livre
+   Ne pas modifier index.css
+   ============================================ */
+
+/* ---- WRAPPER GÉNÉRAL ---- */
+.book-page {
+  background: var(--bg-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.book-page section {
+  padding: 7rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.book-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---- LIEN RETOUR ---- */
+.book-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 1.2rem 2rem;
+  position: relative;
+  z-index: 100;
+  transition: color 0.3s ease;
+}
+
+.book-back-link:hover {
+  color: var(--accent-cyan);
+}
+
+/* ============================================
+   SECTION 1 — HERO
+   ============================================ */
+.book-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 2rem 5rem;
+}
+
+.book-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Texte hero */
+.book-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.book-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: fit-content;
+  animation: heroBadgePulse 3s ease-in-out infinite;
+}
+
+.book-hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes heroBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+  50% { box-shadow: 0 0 15px 2px rgba(0, 240, 255, 0.15); }
+}
+
+.book-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--text-primary);
+}
+
+.book-hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 500;
+  background: var(--gradient-cyber);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: -0.5rem;
+}
+
+.book-hero-desc {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.book-free-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: #22c55e;
+  width: fit-content;
+  font-weight: 600;
+  animation: greenPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes greenPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  50% { box-shadow: 0 0 20px 3px rgba(34, 197, 94, 0.15); }
+}
+
+.book-hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* Stats */
+.book-hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  padding-top: 0.5rem;
+}
+
+.book-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.book-stat-number {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: var(--gradient-cyber);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.book-stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---- MOCKUP LIVRE 3D ---- */
+.book-mockup {
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-3d {
+  position: relative;
+  width: 260px;
+  height: 360px;
+  transform: rotateY(-15deg) rotateX(5deg);
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  animation: bookFloat 5s ease-in-out infinite;
+}
+
+.book-3d:hover {
+  transform: rotateY(-5deg) rotateX(2deg) scale(1.04);
+}
+
+@keyframes bookFloat {
+  0%, 100% { transform: rotateY(-15deg) rotateX(5deg) translateY(0); }
+  50% { transform: rotateY(-15deg) rotateX(5deg) translateY(-14px); }
+}
+
+.book-cover {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-cyber);
+  border-radius: 4px 12px 12px 4px;
+  box-shadow:
+    20px 20px 60px rgba(0, 240, 255, 0.3),
+    -4px 0 12px rgba(0, 0, 0, 0.6),
+    inset -2px 0 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.book-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(0,0,0,0.2) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.book-cover-tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(10, 10, 15, 0.85);
+  font-family: var(--font-display);
+  font-weight: 600;
+  background: rgba(255,255,255,0.3);
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+}
+
+.book-cover-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.book-cover-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #0a0a0f;
+  text-align: center;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.book-cover-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(10, 10, 15, 0.75);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.book-cover-author {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(10, 10, 15, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-top: 1px solid rgba(10, 10, 15, 0.3);
+  padding-top: 0.75rem;
+  width: 100%;
+  text-align: center;
+}
+
+.book-spine {
+  position: absolute;
+  left: -22px;
+  top: 0;
+  width: 22px;
+  height: 100%;
+  background: linear-gradient(180deg, #00b8c9 0%, #7b2fbe 50%, #c77b00 100%);
+  border-radius: 4px 0 0 4px;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-spine-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ============================================
+   SECTION 2 — PROBLÈME AVANT/APRÈS
+   ============================================ */
+.before-after-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pain-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.pain-card:hover {
+  transform: translateY(-4px);
+}
+
+.pain-bad {
+  border-top: 3px solid rgba(239, 68, 68, 0.5);
+}
+
+.pain-good {
+  border-top: 3px solid rgba(0, 240, 255, 0.6);
+}
+
+.pain-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.pain-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pain-icon-bad {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.pain-icon-good {
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--accent-cyan);
+}
+
+.pain-row-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.pain-row-text.bad {
+  color: var(--text-muted);
+}
+
+.pain-row-text.good {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.pain-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 0;
+}
+
+/* ============================================
+   SECTION 3 — CHAPITRES
+   ============================================ */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.chapter-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.chapter-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(0, 240, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.chapter-bg-number {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.chapter-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: fit-content;
+}
+
+.chapter-tag-fondation {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+}
+
+.chapter-tag-mindset {
+  background: rgba(168, 85, 247, 0.1);
+  color: var(--accent-purple);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+.chapter-tag-technique {
+  background: rgba(255, 167, 38, 0.1);
+  color: var(--accent-gold);
+  border: 1px solid rgba(255, 167, 38, 0.25);
+}
+
+.chapter-tag-antipatterns {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.chapter-tag-pratique {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.chapter-tag-futur {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.chapter-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ============================================
+   SECTION 4 — EXTRAIT / CITATION
+   ============================================ */
+.quote-block {
+  position: relative;
+  background: #0f0f18;
+  border-radius: 16px;
+  border-left: 4px solid transparent;
+  border-image: var(--gradient-cyber) 1;
+  padding: 3.5rem 3.5rem 3rem;
+  margin-top: 3rem;
+  overflow: hidden;
+}
+
+.quote-block::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-family: Georgia, serif;
+  font-size: 10rem;
+  color: var(--accent-cyan);
+  opacity: 0.1;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-source {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--accent-cyan);
+  font-style: normal;
+  letter-spacing: 1px;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+}
+
+.quote-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ============================================
+   SECTION 5 — TÉMOIGNAGES
+   ============================================ */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.testimonial-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(0, 240, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.avatar-cyan {
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--accent-cyan);
+  border: 2px solid rgba(0, 240, 255, 0.3);
+}
+
+.avatar-purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--accent-purple);
+  border: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.avatar-gold {
+  background: rgba(255, 167, 38, 0.15);
+  color: var(--accent-gold);
+  border: 2px solid rgba(255, 167, 38, 0.3);
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.testimonial-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.testimonial-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.testimonial-stars {
+  color: var(--accent-gold);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  color: var(--text-secondary);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ============================================
+   SECTION 6 — PONT WENDTECH
+   ============================================ */
+.wendtech-bridge {
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.bridge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.bridge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.3s ease;
+}
+
+.bridge-item:hover {
+  border-color: rgba(0, 240, 255, 0.2);
+  background: rgba(0, 240, 255, 0.03);
+}
+
+.bridge-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+}
+
+.bridge-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.bridge-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.wendtech-bridge-cta {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   SECTION 7 — FAQ ACCORDÉON
+   ============================================ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.faq-item.faq-open {
+  border-color: rgba(0, 240, 255, 0.25);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 1.8rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--accent-cyan);
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--accent-cyan);
+  transition: transform 0.35s ease;
+}
+
+.faq-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 1.8rem 1.4rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow: hidden;
+}
+
+/* ============================================
+   SECTION 8 — CTA FINAL
+   ============================================ */
+.book-final-cta {
+  position: relative;
+  text-align: center;
+  padding: 8rem 2rem;
+}
+
+.book-final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-cyber);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.book-final-cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.book-final-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.book-final-sub {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.book-final-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: #4ade80;
+  letter-spacing: 1px;
+}
+
+.btn-cta-giant {
+  font-size: 1.2rem;
+  padding: 1.3rem 3rem;
+  background: var(--gradient-cyber);
+  color: var(--bg-dark);
+  border-radius: 60px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-cta-giant:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 0 60px rgba(0, 240, 255, 0.55);
+}
+
+.book-final-sub-link {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.book-final-sub-link a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.book-final-sub-link a:hover {
+  color: #fff;
+}
+
+/* ============================================
+   RESPONSIVE — TABLET 768px
+   ============================================ */
+@media (max-width: 1024px) {
+  .before-after-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bridge-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .book-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .book-hero-badge,
+  .book-free-badge {
+    margin: 0 auto;
+  }
+
+  .book-hero-desc {
+    max-width: 100%;
+  }
+
+  .book-hero-cta {
+    align-items: center;
+  }
+
+  .book-hero-stats {
+    justify-content: center;
+  }
+
+  .book-mockup {
+    order: -1;
+  }
+
+  .book-3d {
+    width: 210px;
+    height: 295px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE 768px
+   ============================================ */
+@media (max-width: 768px) {
+  .book-page section {
+    padding: 5rem 1.2rem;
+  }
+
+  .book-hero {
+    padding: 5rem 1.2rem 4rem;
+  }
+
+  .chapters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bridge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-3d {
+    width: 190px;
+    height: 265px;
+  }
+
+  .book-cover-title {
+    font-size: 1.05rem;
+  }
+
+  .quote-block {
+    padding: 2.5rem 1.5rem 2rem;
+  }
+
+  .quote-block::before {
+    font-size: 6rem;
+  }
+
+  .wendtech-bridge {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .book-hero-stats {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE 375px
+   ============================================ */
+@media (max-width: 480px) {
+  .book-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .book-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .book-3d {
+    width: 170px;
+    height: 240px;
+  }
+
+  .book-cover-title {
+    font-size: 0.95rem;
+  }
+
+  .book-cover-icon {
+    font-size: 2rem;
+  }
+
+  .btn-cta-giant {
+    font-size: 1rem;
+    padding: 1.1rem 2rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem;
+  }
+}
