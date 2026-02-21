@@ -52,7 +52,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/livre" element={<BookPage />} />
+      <Route path="/ebooks" element={<BookPage />} />
     </Routes>
   )
 }
