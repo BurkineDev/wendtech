@@ -192,15 +192,15 @@ const BookHero = () => {
    ============================================ */
 const painCards = [
   {
-    bad: 'Tu demandes à l'IA d'écrire du code',
-    good: 'Tu architectures avec l'IA comme co-penseur',
+    bad: "Tu demandes à l'IA d'écrire du code",
+    good: "Tu architectures avec l'IA comme co-penseur",
   },
   {
     bad: 'Tu obtiens du code générique cassé en prod',
     good: 'Tu produis des systèmes cohérents dès le 1er prompt',
   },
   {
-    bad: 'Tu passes des heures à corriger les bugs de l'IA',
+    bad: "Tu passes des heures à corriger les bugs de l'IA",
     good: 'Tu identifies le vrai problème avant de coder',
   },
 ]
@@ -297,7 +297,7 @@ const chapters = [
     tag: 'Futur',
     tagClass: 'chapter-tag-futur',
     title: 'Le Dev Augmenté en 2025',
-    desc: 'Comment rester pertinent et irremplaçable face à l'IA.',
+    desc: "Comment rester pertinent et irremplaçable face à l'IA.",
   },
 ]
 
@@ -398,21 +398,21 @@ const testimonials = [
     avatarClass: 'avatar-cyan',
     name: 'Moussa K.',
     role: 'Dev Full-Stack, Dakar',
-    text: 'J'utilisais l'IA depuis 1 an sans résultats constants. Après le chapitre 3, tout a changé. Mon client a reçu son MVP en 3 semaines au lieu de 2 mois.',
+    text: "J'utilisais l'IA depuis 1 an sans résultats constants. Après le chapitre 3, tout a changé. Mon client a reçu son MVP en 3 semaines au lieu de 2 mois.",
   },
   {
     initials: 'AS',
     avatarClass: 'avatar-purple',
     name: 'Aminata S.',
     role: 'CTO Startup, Abidjan',
-    text: 'Le framework Architecture Cognitive m'a appris à penser avant de prompter. Basique mais jamais enseigné nulle part. Ce livre comble ce vide.',
+    text: "Le framework Architecture Cognitive m'a appris à penser avant de prompter. Basique mais jamais enseigné nulle part. Ce livre comble ce vide.",
   },
   {
     initials: 'JT',
     avatarClass: 'avatar-gold',
     name: 'Jean-Pierre T.',
     role: 'Dev Mobile, Ouagadougou',
-    text: 'Les anti-prompts du chapitre 4 m'ont choqué. J'utilisais 8 des 12 formulations catastrophiques. Plus maintenant.',
+    text: "Les anti-prompts du chapitre 4 m'ont choqué. J'utilisais 8 des 12 formulations catastrophiques. Plus maintenant.",
   },
 ]
 
@@ -540,15 +540,15 @@ const WendtechBridge = () => {
 const faqItems = [
   {
     q: 'Le livre est vraiment gratuit ?',
-    a: 'Oui, totalement gratuit. Aucun email requis, aucune carte bancaire. Télécharge et lis. Si tu veux aller plus loin avec ton projet digital, l'équipe Wendtech est là.',
+    a: "Oui, totalement gratuit. Aucun email requis, aucune carte bancaire. Télécharge et lis. Si tu veux aller plus loin avec ton projet digital, l'équipe Wendtech est là.",
   },
   {
-    q: 'À qui s'adresse ce livre ?',
-    a: 'Aux développeurs qui codent déjà mais qui veulent structurer leur collaboration avec l'IA. Un dev avec 6 mois d'expérience peut en tirer parti dès le chapitre 1.',
+    q: "À qui s'adresse ce livre ?",
+    a: "Aux développeurs qui codent déjà mais qui veulent structurer leur collaboration avec l'IA. Un dev avec 6 mois d'expérience peut en tirer parti dès le chapitre 1.",
   },
   {
     q: 'Ça marche avec quel outil IA ?',
-    a: 'Le framework est agnostique. ChatGPT, Claude, Gemini, Copilot — les principes s'appliquent à tout modèle de langage.',
+    a: "Le framework est agnostique. ChatGPT, Claude, Gemini, Copilot — les principes s'appliquent à tout modèle de langage.",
   },
   {
     q: 'Le livre est en quelle langue ?',
