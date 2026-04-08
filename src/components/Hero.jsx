@@ -40,7 +40,7 @@ const Hero = () => {
         animate={inView ? 'visible' : 'hidden'}
       >
         <motion.div className="hero-badge" variants={itemVariants}>
-          <span>Agence Digitale Internationale</span>
+          <span>Agence Digitale</span>
         </motion.div>
 
         <motion.h1 variants={itemVariants}>
