@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { Lightbulb, Users, Shield, TrendingUp } from 'lucide-react'
 
 const values = [
-  { icon: Lightbulb, label: 'Innovation Locale' },
+  { icon: Lightbulb, label: 'Innovation Continue' },
   { icon: Users, label: 'Accessibilité' },
   { icon: Shield, label: 'Confiance' },
   { icon: TrendingUp, label: 'Impact Positif' }
@@ -44,13 +44,13 @@ const About = () => {
           <span className="section-tag">À Propos</span>
           <h2>Qui sommes-nous ?</h2>
           <p>
-            Wendtech est une agence digitale basée au Burkina Faso, spécialisée dans 
-            le développement web et mobile, ainsi que le consulting pour les PME et 
-            les acteurs des marchés locaux.
+            Wendtech est une agence digitale internationale, spécialisée dans
+            le développement web et mobile, ainsi que le consulting pour les PME et
+            les entreprises de toutes tailles, partout dans le monde.
           </p>
           <p>
-            Fondée avec la vision de démocratiser le numérique au Burkina, nous croyons 
-            que chaque commerçant, artisan ou entrepreneur mérite une présence en ligne 
+            Fondée avec la vision de démocratiser le numérique pour tous, nous croyons
+            que chaque commerçant, artisan ou entrepreneur mérite une présence en ligne
             professionnelle pour booster ses ventes et sa visibilité.
           </p>
 

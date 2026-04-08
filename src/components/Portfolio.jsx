@@ -12,7 +12,7 @@ const services = [
   {
     icon: ShoppingCart,
     title: 'E-commerce',
-    description: 'Vendez vos produits en ligne avec paiement mobile money intégré.',
+    description: 'Vendez vos produits en ligne avec des solutions de paiement intégrées.',
     color: '#a855f7'
   },
   {
@@ -58,7 +58,7 @@ const Portfolio = () => {
           Ce Que Nous <span className="gradient">Réalisons</span>
         </h2>
         <p className="section-desc">
-          Des solutions digitales adaptées aux besoins des PME burkinabè.
+          Des solutions digitales adaptées aux besoins de chaque entreprise, partout dans le monde.
         </p>
       </motion.div>
 

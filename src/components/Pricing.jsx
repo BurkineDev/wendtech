@@ -5,8 +5,8 @@ const pricingPlans = [
   {
     name: 'Site Vitrine',
     description: 'Idéal pour démarrer',
-    price: '500 000',
-    currency: 'FCFA',
+    price: 'Sur devis',
+    currency: '',
     features: [
       '5-10 pages',
       'Design responsive',
@@ -19,12 +19,12 @@ const pricingPlans = [
   {
     name: 'Site E-commerce',
     description: 'Pour vendre en ligne',
-    price: '1 500 000',
-    currency: 'FCFA',
+    price: 'Sur devis',
+    currency: '',
     features: [
       'Boutique complète',
       'Gestion produits',
-      'Paiement mobile money',
+      'Paiements en ligne intégrés',
       'Tableau de bord',
       '3 mois de support'
     ],
@@ -32,9 +32,9 @@ const pricingPlans = [
   },
   {
     name: 'App Mobile',
-    description: 'Pour les marchés',
-    price: '2 000 000',
-    currency: 'FCFA',
+    description: 'Pour votre activité',
+    price: 'Sur devis',
+    currency: '',
     features: [
       'Android & iOS',
       'Gestion stocks',

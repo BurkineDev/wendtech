@@ -23,7 +23,7 @@ const services = [
     features: [
       'Applications natives et hybrides',
       'Interface intuitive',
-      'Intégration mobile money',
+      'Intégration passerelles de paiement',
       'Support et maintenance'
     ]
   },
