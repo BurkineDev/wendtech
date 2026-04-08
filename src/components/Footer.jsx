@@ -40,7 +40,7 @@ const Footer = () => {
               WEND<span>TECH</span>
             </a>
             <p>
-              Votre partenaire digital au Burkina Faso. Nous accompagnons les PME 
+              Votre partenaire digital international. Nous accompagnons les PME et entreprises
               dans leur transformation numérique avec des solutions innovantes et accessibles.
             </p>
             <div className="social-links">
@@ -88,10 +88,8 @@ const Footer = () => {
           <div className="footer-links">
             <h4>Contact</h4>
             <ul>
-              <li>Bobo Dioulasso, Burkina Faso</li>
-              <li>SC BP 1096 BOBO</li>
-              <li>🇧🇫 +226 65 17 07 78</li>
-              <li>🇨🇦 +1 819 219 0558</li>
+              <li>+226 65 17 07 78</li>
+              <li>+1 819 219 0558</li>
               <li>saristide99@gmail.com</li>
             </ul>
           </div>
@@ -99,7 +97,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Wendtech. Tous droits réservés.</p>
-          <p>Conçu avec ❤️ au Burkina Faso</p>
+          <p>Conçu avec ❤️ pour le monde entier</p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
+import { Phone, Mail, MessageCircle } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import {
   sanitizeInput,
@@ -17,10 +17,8 @@ const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const contactInfo = [
-  { icon: MapPin, label: 'Adresse', value: 'Bobo Dioulasso, Burkina Faso' },
-  { icon: MapPin, label: 'B.P', value: 'SC BP 1096 BOBO' },
-  { icon: Phone, label: 'Téléphone BF', value: '+226 65 17 07 78' },
-  { icon: Phone, label: 'Téléphone CA', value: '+1 819 219 0558' },
+  { icon: Phone, label: 'Téléphone', value: '+226 65 17 07 78' },
+  { icon: Phone, label: 'Téléphone', value: '+1 819 219 0558' },
   { icon: Mail, label: 'Email', value: 'saristide99@gmail.com' },
   { icon: MessageCircle, label: 'WhatsApp', value: '+226 65 17 07 78' }
 ]
@@ -235,7 +233,7 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   onPaste={handlePaste}
-                  placeholder="+226 XX XX XX XX"
+                  placeholder="+XX XX XX XX XX"
                   required
                   maxLength={20}
                   autoComplete="off"

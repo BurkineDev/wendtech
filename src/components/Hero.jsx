@@ -40,7 +40,7 @@ const Hero = () => {
         animate={inView ? 'visible' : 'hidden'}
       >
         <motion.div className="hero-badge" variants={itemVariants}>
-          <span>Agence Digitale au Burkina Faso</span>
+          <span>Agence Digitale Internationale</span>
         </motion.div>
 
         <motion.h1 variants={itemVariants}>
@@ -49,9 +49,9 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p variants={itemVariants}>
-          Nous accompagnons les PME et marchés burkinabè dans leur transformation 
-          numérique avec des solutions web et mobiles abordables, performantes 
-          et adaptées au contexte local.
+          Nous accompagnons les PME et entreprises du monde entier dans leur transformation
+          numérique avec des solutions web et mobiles performantes, abordables
+          et adaptées à chaque contexte.
         </motion.p>
 
         <motion.div className="hero-buttons" variants={itemVariants}>
