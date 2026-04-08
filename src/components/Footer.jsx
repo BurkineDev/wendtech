@@ -97,7 +97,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Wendtech. Tous droits réservés.</p>
-          <p>Conçu avec ❤️ pour le monde entier</p>
+          <p>Conçu avec ❤️ par Wendtech</p>
         </div>
       </div>
     </footer>
