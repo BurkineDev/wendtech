@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Monitor, Smartphone, BarChart3, Wrench, Users } from 'lucide-react'
+import SpotlightCard from './ui/SpotlightCard'
 
 const services = [
   {
@@ -107,10 +108,10 @@ const Services = () => {
           animate={inView ? 'visible' : 'hidden'}
         >
           {services.map((service, index) => (
-            <motion.div key={index} className="service-card" variants={itemVariants}>
+            <SpotlightCard key={index} className="service-card" variants={itemVariants}>
               <span className="service-number">{service.number}</span>
               <div className="service-icon">
-                <service.icon size={28} color="#0a0a0f" />
+                <service.icon size={26} color="#ffffff" />
               </div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
@@ -119,7 +120,7 @@ const Services = () => {
                   <li key={i}>{feature}</li>
                 ))}
               </ul>
-            </motion.div>
+            </SpotlightCard>
           ))}
         </motion.div>
       </div>

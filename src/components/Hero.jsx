@@ -1,21 +1,30 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { Sparkles, ArrowRight } from 'lucide-react'
+import MagneticButton from './ui/MagneticButton'
 
 const Hero = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+  const sectionRef = useRef(null)
+
+  // Halo lumineux qui suit le curseur
+  const handleMouseMove = (e) => {
+    const el = sectionRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    el.style.setProperty('--mx', `${e.clientX - rect.left}px`)
+    el.style.setProperty('--my', `${e.clientY - rect.top}px`)
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.13 } },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
   }
 
   const stats = [
@@ -25,7 +34,8 @@ const Hero = () => {
   ]
 
   return (
-    <section className="hero" id="accueil">
+    <section className="hero" id="accueil" ref={sectionRef} onMouseMove={handleMouseMove}>
+      <div className="hero-spotlight" />
       <div className="floating-shapes">
         <div className="shape shape-1" />
         <div className="shape shape-2" />
@@ -40,11 +50,12 @@ const Hero = () => {
         animate={inView ? 'visible' : 'hidden'}
       >
         <motion.div className="hero-badge" variants={itemVariants}>
+          <Sparkles size={15} />
           <span>Agence Digitale Internationale</span>
         </motion.div>
 
         <motion.h1 variants={itemVariants}>
-          La Technologie<br />au Service de Votre<br />
+          La Technologie au<br />Service de Votre<br />
           <span className="highlight">Croissance Digitale</span>
         </motion.h1>
 
@@ -55,12 +66,12 @@ const Hero = () => {
         </motion.p>
 
         <motion.div className="hero-buttons" variants={itemVariants}>
-          <a href="#contact" className="btn btn-primary">
-            Demander un Devis
-          </a>
-          <a href="#services" className="btn btn-secondary">
+          <MagneticButton as="a" href="#contact" className="btn btn-primary">
+            Demander un Devis <ArrowRight size={18} />
+          </MagneticButton>
+          <MagneticButton as="a" href="#services" className="btn btn-secondary">
             Nos Services
-          </a>
+          </MagneticButton>
         </motion.div>
 
         <motion.div className="hero-stats" variants={itemVariants}>
@@ -91,7 +102,7 @@ const CounterStat = ({ target, label, inView }) => {
       } else {
         setCount(Math.floor(current))
       }
-    }, 50)
+    }, 45)
 
     return () => clearInterval(interval)
   }, [inView, target])

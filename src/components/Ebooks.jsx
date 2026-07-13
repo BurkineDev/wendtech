@@ -90,14 +90,14 @@ const LeadForm = ({ ebook, onClose }) => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <CheckCircle size={52} color="#00f0ff" />
+              <CheckCircle size={52} color="#8b5cf6" />
               <h3>C'est parti !</h3>
               <p>Ton téléchargement démarre dans un instant…</p>
             </motion.div>
           ) : (
             <motion.div key="form">
               <div className="lead-header">
-                <Download size={26} color="#00f0ff" />
+                <Download size={26} color="#8b5cf6" />
                 <div>
                   <h3>Téléchargement gratuit</h3>
                   <p>Laisse-nous tes coordonnées pour recevoir nos prochaines ressources.</p>
@@ -185,7 +185,7 @@ const Ebooks = () => {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
           >
-            <FileText size={64} color="#00f0ff" />
+            <FileText size={64} color="#8b5cf6" />
             <h3>Bientôt disponible</h3>
             <p>Nos ebooks gratuits arrivent très prochainement. Restez connectés !</p>
           </motion.div>
@@ -203,7 +203,7 @@ const Ebooks = () => {
                   {ebook.cover ? (
                     <img src={ebook.cover} alt={`Couverture ${ebook.title}`} loading="lazy" />
                   ) : (
-                    <FileText size={48} color="#00f0ff" style={{ opacity: 0.6 }} />
+                    <FileText size={48} color="#8b5cf6" style={{ opacity: 0.6 }} />
                   )}
                 </div>
                 <div className="ebook-content">

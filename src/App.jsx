@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Loader from './components/Loader'
+import ScrollProgress from './components/ui/ScrollProgress'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Features from './components/Features'
@@ -30,6 +31,7 @@ function HomePage() {
       <Loader isLoading={loading} />
       <div className="bg-grid" />
       <div className="bg-glow" />
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

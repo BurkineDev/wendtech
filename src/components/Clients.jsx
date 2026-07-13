@@ -46,25 +46,21 @@ const Clients = () => {
           Ils Nous Font <span className="gradient">Confiance</span>
         </h2>
         
-        <div className="clients-grid">
-          {clients.map((client, index) => (
-            <motion.div
-              key={index}
-              className="client-card"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-            >
-              <img 
-                src={client.logo} 
-                alt={`Logo ${client.name}`}
-                loading="lazy"
-                width="180"
-                height="80"
-              />
-              <span className="client-sector">{client.sector}</span>
-            </motion.div>
-          ))}
+        <div className="marquee">
+          <div className="marquee-track">
+            {[...clients, ...clients].map((client, index) => (
+              <div key={index} className="client-card" aria-hidden={index >= clients.length}>
+                <img
+                  src={client.logo}
+                  alt={`Logo ${client.name}`}
+                  loading="lazy"
+                  width="160"
+                  height="64"
+                />
+                <span className="client-sector">{client.sector}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <p className="clients-cta">

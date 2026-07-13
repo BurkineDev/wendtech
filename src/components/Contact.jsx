@@ -177,7 +177,7 @@ const Contact = () => {
             {contactInfo.map((item, index) => (
               <div key={index} className="contact-item">
                 <div className="contact-icon">
-                  <item.icon size={22} color="#00f0ff" />
+                  <item.icon size={20} />
                 </div>
                 <div className="contact-item-text">
                   <span className="label">{item.label}</span>

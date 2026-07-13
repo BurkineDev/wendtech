@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Target, Globe, Wallet, Rocket } from 'lucide-react'
+import SpotlightCard from './ui/SpotlightCard'
 
 const features = [
   {
@@ -66,13 +67,13 @@ const Features = () => {
         animate={inView ? 'visible' : 'hidden'}
       >
         {features.map((feature, index) => (
-          <motion.div key={index} className="feature-card" variants={itemVariants}>
+          <SpotlightCard key={index} className="feature-card" variants={itemVariants}>
             <div className="feature-icon">
-              <feature.icon size={32} color="#00f0ff" />
+              <feature.icon size={30} />
             </div>
             <h3>{feature.title}</h3>
             <p>{feature.description}</p>
-          </motion.div>
+          </SpotlightCard>
         ))}
       </motion.div>
     </section>

@@ -1,37 +1,38 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ShoppingCart, Store, Building2, Smartphone, Globe, Code } from 'lucide-react'
+import SpotlightCard from './ui/SpotlightCard'
 
 const services = [
   {
     icon: Globe,
     title: 'Sites Vitrines',
     description: 'Présentez votre entreprise avec un site moderne et professionnel.',
-    color: '#00f0ff'
+    color: '#5b8cff'
   },
   {
     icon: ShoppingCart,
     title: 'E-commerce',
     description: 'Vendez vos produits en ligne avec des solutions de paiement intégrées.',
-    color: '#a855f7'
+    color: '#8b5cf6'
   },
   {
     icon: Smartphone,
     title: 'Applications Mobiles',
     description: 'Apps Android/iOS pour gérer votre activité où que vous soyez.',
-    color: '#ffa726'
+    color: '#f65c9e'
   },
   {
     icon: Store,
     title: 'Gestion de Stocks',
     description: 'Suivez vos inventaires et évitez les ruptures de stock.',
-    color: '#10b981'
+    color: '#2dd4bf'
   },
   {
     icon: Code,
     title: 'Solutions Sur Mesure',
     description: 'Développement personnalisé selon vos besoins spécifiques.',
-    color: '#ef4444'
+    color: '#fbbf24'
   },
   {
     icon: Building2,
@@ -64,22 +65,22 @@ const Portfolio = () => {
 
       <div className="portfolio-grid">
         {services.map((service, index) => (
-          <motion.div
+          <SpotlightCard
             key={index}
             className="portfolio-item-simple"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: index * 0.1, duration: 0.4 }}
+            transition={{ delay: index * 0.08, duration: 0.4 }}
           >
-            <div 
-              className="portfolio-icon" 
-              style={{ background: `${service.color}20`, color: service.color }}
+            <div
+              className="portfolio-icon"
+              style={{ background: `${service.color}1f`, color: service.color, border: `1px solid ${service.color}40` }}
             >
-              <service.icon size={32} />
+              <service.icon size={30} />
             </div>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
-          </motion.div>
+          </SpotlightCard>
         ))}
       </div>
 

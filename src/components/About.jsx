@@ -64,7 +64,7 @@ const About = () => {
                 transition={{ delay: 0.4 + index * 0.1 }}
               >
                 <div className="value-icon">
-                  <value.icon size={24} color="#00f0ff" />
+                  <value.icon size={22} />
                 </div>
                 <span>{value.label}</span>
               </motion.div>
