@@ -1,99 +1,56 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ShoppingCart, Store, Building2, Smartphone, Globe, Code } from 'lucide-react'
+import { Globe, ShoppingCart, Smartphone, Store, Code, Building2 } from 'lucide-react'
 
-const services = [
-  {
-    icon: Globe,
-    title: 'Sites Vitrines',
-    description: 'Présentez votre entreprise avec un site moderne et professionnel.',
-    color: '#00f0ff'
-  },
-  {
-    icon: ShoppingCart,
-    title: 'E-commerce',
-    description: 'Vendez vos produits en ligne avec des solutions de paiement intégrées.',
-    color: '#a855f7'
-  },
-  {
-    icon: Smartphone,
-    title: 'Applications Mobiles',
-    description: 'Apps Android/iOS pour gérer votre activité où que vous soyez.',
-    color: '#ffa726'
-  },
-  {
-    icon: Store,
-    title: 'Gestion de Stocks',
-    description: 'Suivez vos inventaires et évitez les ruptures de stock.',
-    color: '#10b981'
-  },
-  {
-    icon: Code,
-    title: 'Solutions Sur Mesure',
-    description: 'Développement personnalisé selon vos besoins spécifiques.',
-    color: '#ef4444'
-  },
-  {
-    icon: Building2,
-    title: 'Transformation Digitale',
-    description: 'Accompagnement complet pour digitaliser votre entreprise.',
-    color: '#6366f1'
-  }
+const expertises = [
+  { icon: Globe, title: 'Sites vitrines', text: 'Présentez votre entreprise avec un site moderne, rapide et professionnel.' },
+  { icon: ShoppingCart, title: 'E-commerce', text: 'Vendez vos produits en ligne avec des solutions de paiement intégrées.' },
+  { icon: Smartphone, title: 'Applications mobiles', text: 'Apps Android et iOS pour gérer votre activité où que vous soyez.' },
+  { icon: Store, title: 'Gestion de stocks', text: 'Suivez vos inventaires en temps réel et évitez les ruptures de stock.' },
+  { icon: Code, title: 'Solutions sur mesure', text: 'Développement personnalisé selon vos processus et vos besoins spécifiques.' },
+  { icon: Building2, title: 'Transformation digitale', text: 'Accompagnement complet pour digitaliser durablement votre entreprise.' }
 ]
 
 const Portfolio = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section className="portfolio" id="portfolio">
-      <motion.div
-        ref={ref}
-        className="section-header"
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        <span className="section-tag">Nos Expertises</span>
-        <h2 className="section-title">
-          Ce Que Nous <span className="gradient">Réalisons</span>
-        </h2>
-        <p className="section-desc">
-          Des solutions digitales adaptées aux besoins de chaque entreprise, partout dans le monde.
-        </p>
-      </motion.div>
+    <section className="expertises" id="realisations" ref={ref}>
+      <div className="container">
+        <motion.div
+          className="section-head"
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="eyebrow">Nos réalisations</span>
+          <h2 className="section-title">
+            Ce que nous <span className="hl">réalisons</span>
+          </h2>
+          <p className="section-desc">
+            Des solutions digitales adaptées aux besoins de chaque entreprise,
+            du commerce de quartier à la PME internationale.
+          </p>
+        </motion.div>
 
-      <div className="portfolio-grid">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            className="portfolio-item-simple"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: index * 0.1, duration: 0.4 }}
-          >
-            <div 
-              className="portfolio-icon" 
-              style={{ background: `${service.color}20`, color: service.color }}
+        <div className="expertise-grid">
+          {expertises.map((expertise, index) => (
+            <motion.div
+              className="card expertise"
+              key={expertise.title}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: index * 0.07 }}
             >
-              <service.icon size={32} />
-            </div>
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-          </motion.div>
-        ))}
+              <div className="card-icon">
+                <expertise.icon size={24} />
+              </div>
+              <h3>{expertise.title}</h3>
+              <p>{expertise.text}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
-
-      <motion.div 
-        className="portfolio-cta"
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.5 }}
-      >
-        <p>Vous avez un projet en tête ?</p>
-        <a href="#contact" className="btn btn-primary">
-          Demander un Devis Gratuit
-        </a>
-      </motion.div>
     </section>
   )
 }

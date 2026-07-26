@@ -94,15 +94,28 @@ wendtech-react/
 ├── src/
 │   ├── components/
 │   │   ├── About.jsx
+│   │   ├── Advantages.jsx
+│   │   ├── BookPage.jsx
+│   │   ├── Clients.jsx
 │   │   ├── Contact.jsx
+│   │   ├── Ebooks.jsx
 │   │   ├── Features.jsx
 │   │   ├── Footer.jsx
+│   │   ├── Growth.jsx
 │   │   ├── Hero.jsx
 │   │   ├── Loader.jsx
+│   │   ├── Marquee.jsx
 │   │   ├── Navbar.jsx
 │   │   ├── Portfolio.jsx
 │   │   ├── Pricing.jsx
-│   │   └── Services.jsx
+│   │   ├── Process.jsx
+│   │   ├── Services.jsx
+│   │   ├── Testimonials.jsx
+│   │   ├── Topbar.jsx
+│   │   ├── WhatsAppButton.jsx
+│   │   └── WhyUs.jsx
+│   ├── data/
+│   │   └── site.js
 │   ├── styles/
 │   │   └── index.css
 │   ├── utils/
@@ -117,17 +130,28 @@ wendtech-react/
 
 ## ⚙️ Configuration
 
-### Modifier les informations de contact
+### Modifier les informations de l'entreprise
 
-Éditez `src/components/Contact.jsx` et `src/components/Footer.jsx` :
+Toutes les coordonnées (téléphones, courriel, adresses, réseaux sociaux), les
+chiffres clés et les listes de services sont centralisés dans **`src/data/site.js`**.
+Une modification à cet endroit se répercute sur la barre supérieure, le menu,
+la section contact et le pied de page :
 
 ```javascript
-const contactInfo = [
-  { icon: Phone, label: 'Téléphone', value: '+226 65 17 07 78' },
-  { icon: Mail, label: 'Email', value: 'contact@wendtech.bf' },
+export const company = {
+  name: 'Wendtech',
+  phones: ['+226 65 17 07 78', '+1 819 219 0558'],
+  email: 'saristide99@gmail.com',
+  locations: ['Ouagadougou, Burkina Faso', 'Québec, Canada'],
   // ...
-]
+}
 ```
+
+### Ajouter des avis clients
+
+Renseignez le tableau `testimonials` dans `src/components/Testimonials.jsx`
+(`score`, `source`, `quote`, `author`, `role`). Tant qu'il est vide, seuls les
+engagements de l'agence sont affichés.
 
 ### Connecter un backend
 
@@ -156,22 +180,25 @@ Le site est optimisé pour :
 
 ### Couleurs
 
-Modifiez les variables CSS dans `src/styles/index.css` :
+Le design system repose sur un fond noir, des surfaces sombres et une gamme
+de bleus Wendtech. Toutes les variables sont dans `src/styles/index.css` :
 
 ```css
 :root {
-  --accent-cyan: #00f0ff;
-  --accent-gold: #ffa726;
-  --accent-purple: #a855f7;
+  --bg: #000000;
+  --surface-2: #141414;
+  --primary-500: #2f86ff;   /* bleu de marque */
+  --primary-600: #1a67e6;   /* fond des boutons */
+  --primary-400: #59a5ff;   /* accents sur fond sombre */
+  --accent: #5ecdf6;
   /* ... */
 }
 ```
 
 ### Polices
 
-Les polices utilisées sont :
-- **Exo 2** - Titres (tech/futuriste)
-- **Rajdhani** - Corps de texte
+- **Plus Jakarta Sans** — titres et éléments d'interface
+- **Inter** — corps de texte
 
 ## 📄 Licence
 

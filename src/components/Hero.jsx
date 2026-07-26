@@ -1,107 +1,60 @@
-import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { ArrowRight } from 'lucide-react'
+import { stats } from '../data/site'
 
-const Hero = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+const container = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
+}
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55 } }
+}
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  }
+const scrollTo = (e, id) => {
+  e.preventDefault()
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 
-  const stats = [
-    { number: 50, label: 'Projets Réalisés' },
-    { number: 40, label: 'Clients Satisfaits' },
-    { number: 5, label: "Années d'Expérience" },
-  ]
+const Hero = () => (
+  <section className="hero" id="accueil">
+    <motion.div className="container" variants={container} initial="hidden" animate="visible">
+      <motion.span className="eyebrow" variants={item}>
+        Agence web et logiciels
+      </motion.span>
 
-  return (
-    <section className="hero" id="accueil">
-      <div className="floating-shapes">
-        <div className="shape shape-1" />
-        <div className="shape shape-2" />
-        <div className="shape shape-3" />
-      </div>
+      <motion.h1 variants={item}>
+        On <span className="hl-underline">développe vos logiciels</span>.
+        On propulse votre <span className="hl">visibilité en ligne</span>.
+      </motion.h1>
 
-      <motion.div
-        ref={ref}
-        className="hero-content"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <motion.div className="hero-badge" variants={itemVariants}>
-          <span>Agence Digitale Internationale</span>
-        </motion.div>
+      <motion.p variants={item}>
+        Chez Wendtech, nous donnons vie à vos idées : développement web sur mesure,
+        applications mobiles, boutiques en ligne, plateformes d&apos;inscriptions et
+        consulting digital. Du code à la croissance, nous livrons des solutions
+        performantes et accessibles aux PME et entreprises, du Burkina Faso au Canada.
+      </motion.p>
 
-        <motion.h1 variants={itemVariants}>
-          La Technologie<br />au Service de Votre<br />
-          <span className="highlight">Croissance Digitale</span>
-        </motion.h1>
-
-        <motion.p variants={itemVariants}>
-          Nous accompagnons les PME et entreprises du monde entier dans leur transformation
-          numérique avec des solutions web et mobiles performantes, abordables
-          et adaptées à chaque contexte.
-        </motion.p>
-
-        <motion.div className="hero-buttons" variants={itemVariants}>
-          <a href="#contact" className="btn btn-primary">
-            Demander un Devis
-          </a>
-          <a href="#services" className="btn btn-secondary">
-            Nos Services
-          </a>
-        </motion.div>
-
-        <motion.div className="hero-stats" variants={itemVariants}>
-          {stats.map((stat, index) => (
-            <CounterStat key={index} target={stat.number} label={stat.label} inView={inView} />
-          ))}
-        </motion.div>
+      <motion.div className="hero-actions" variants={item}>
+        <a href="#contact" className="btn btn-primary" onClick={(e) => scrollTo(e, 'contact')}>
+          Nous joindre <ArrowRight size={17} />
+        </a>
+        <a href="#services" className="btn btn-ghost" onClick={(e) => scrollTo(e, 'services')}>
+          Nos services
+        </a>
       </motion.div>
-    </section>
-  )
-}
 
-const CounterStat = ({ target, label, inView }) => {
-  const [count, setCount] = useState(0)
-  const hasAnimated = useRef(false)
-
-  useEffect(() => {
-    if (!inView || hasAnimated.current) return
-    hasAnimated.current = true
-
-    let current = 0
-    const step = target / 40
-    const interval = setInterval(() => {
-      current += step
-      if (current >= target) {
-        setCount(target)
-        clearInterval(interval)
-      } else {
-        setCount(Math.floor(current))
-      }
-    }, 50)
-
-    return () => clearInterval(interval)
-  }, [inView, target])
-
-  return (
-    <div className="stat">
-      <div className="stat-number">{count}+</div>
-      <div className="stat-label">{label}</div>
-    </div>
-  )
-}
+      <motion.div className="hero-stats" variants={item}>
+        {stats.map((stat) => (
+          <div className="hero-stat" key={stat.label}>
+            <div className="num">{stat.value}</div>
+            <div className="label">{stat.label}</div>
+          </div>
+        ))}
+      </motion.div>
+    </motion.div>
+  </section>
+)
 
 export default Hero

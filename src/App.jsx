@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Loader from './components/Loader'
+import Topbar from './components/Topbar'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Features from './components/Features'
+import Marquee from './components/Marquee'
+import About from './components/About'
 import Services from './components/Services'
-import Pricing from './components/Pricing'
+import Growth from './components/Growth'
+import WhyUs from './components/WhyUs'
+import Features from './components/Features'
+import Process from './components/Process'
+import Testimonials from './components/Testimonials'
+import Advantages from './components/Advantages'
 import Portfolio from './components/Portfolio'
+import Pricing from './components/Pricing'
 import Clients from './components/Clients'
 import Ebooks from './components/Ebooks'
-import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -19,9 +26,7 @@ function HomePage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1200)
+    const timer = setTimeout(() => setLoading(false), 1000)
     return () => clearTimeout(timer)
   }, [])
 
@@ -30,18 +35,30 @@ function HomePage() {
       <Loader isLoading={loading} />
       <div className="bg-grid" />
       <div className="bg-glow" />
+
+      <a className="skip-link" href="#accueil">Aller au contenu principal</a>
+
+      <Topbar />
       <Navbar />
+
       <main>
         <Hero />
-        <Features />
+        <Marquee />
+        <About />
         <Services />
+        <Growth />
+        <WhyUs />
+        <Features />
+        <Process />
+        <Testimonials />
+        <Advantages />
         <Portfolio />
         <Pricing />
         <Clients />
         <Ebooks />
-        <About />
         <Contact />
       </main>
+
       <Footer />
       <WhatsAppButton />
     </>

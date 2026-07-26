@@ -1,77 +1,74 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Lightbulb, Users, Shield, TrendingUp } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
-const values = [
-  { icon: Lightbulb, label: 'Innovation Continue' },
-  { icon: Users, label: 'Accessibilité' },
-  { icon: Shield, label: 'Confiance' },
-  { icon: TrendingUp, label: 'Impact Positif' }
+const pillars = [
+  {
+    title: 'Créateurs d’excellence numérique',
+    text: "Nous concevons des solutions complètes, du site vitrine à la boutique en ligne, en passant par les applications mobiles et l'automatisation de vos processus."
+  },
+  {
+    title: 'Innover le paysage numérique',
+    text: 'Nous marions technologies modernes et stratégie digitale pour non seulement répondre à vos besoins, mais élever durablement votre marque.'
+  },
+  {
+    title: 'Propulser les marques en ligne',
+    text: "Un accompagnement transparent qui donne à votre équipe les outils, la formation et la visibilité qui lui appartiennent."
+  }
 ]
 
 const About = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 })
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  const scrollToContact = (e) => {
+    e.preventDefault()
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <section className="about" id="apropos">
-      <motion.div
-        ref={ref}
-        className="about-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <motion.div className="about-visual" variants={itemVariants}>
-          <div className="about-image">
-            🌍
+    <section className="about" id="apropos" ref={ref}>
+      <div className="container">
+        <motion.div
+          className="about-top"
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <div>
+            <span className="eyebrow">À propos de l&apos;agence</span>
+            <h2>
+              Des solutions <span className="hl">web, mobiles et digitales</span> sur
+              mesure qui élèvent votre marque.
+            </h2>
+          </div>
+
+          <div className="about-aside">
+            <p>
+              Nous mesurons notre réussite à la croissance de votre entreprise. Notre mission :
+              démocratiser le numérique et livrer des solutions performantes, du développement
+              sur mesure à l&apos;accompagnement stratégique, à un prix juste.
+            </p>
+            <a href="#contact" className="btn btn-ghost" onClick={scrollToContact}>
+              Nous contacter <ArrowRight size={17} />
+            </a>
           </div>
         </motion.div>
 
-        <motion.div className="about-content" variants={itemVariants}>
-          <span className="section-tag">À Propos</span>
-          <h2>Qui sommes-nous ?</h2>
-          <p>
-            Wendtech est une agence digitale internationale, spécialisée dans
-            le développement web et mobile, ainsi que le consulting pour les PME et
-            les entreprises de toutes tailles, partout dans le monde.
-          </p>
-          <p>
-            Fondée avec la vision de démocratiser le numérique pour tous, nous croyons
-            que chaque commerçant, artisan ou entrepreneur mérite une présence en ligne
-            professionnelle pour booster ses ventes et sa visibilité.
-          </p>
-
-          <div className="values-grid">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                className="value-item"
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 + index * 0.1 }}
-              >
-                <div className="value-icon">
-                  <value.icon size={24} color="#00f0ff" />
-                </div>
-                <span>{value.label}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </motion.div>
+        <div className="pillars">
+          {pillars.map((pillar, index) => (
+            <motion.div
+              className="pillar"
+              key={pillar.title}
+              initial={{ opacity: 0, y: 28 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
+            >
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

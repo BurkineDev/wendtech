@@ -71,14 +71,14 @@ const LeadModal = ({ onClose }) => {
           {status === 'success' ? (
             <motion.div key="ok" className="bp-modal-success"
               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-              <CheckCircle size={54} color="#00f0ff" />
+              <CheckCircle size={54} color="#59a5ff" />
               <h3>C'est parti !</h3>
               <p>Ton téléchargement démarre dans un instant…</p>
             </motion.div>
           ) : (
             <motion.div key="form">
               <div className="bp-modal-header">
-                <Download size={26} color="#00f0ff" />
+                <Download size={26} color="#59a5ff" />
                 <div>
                   <h3>Téléchargement gratuit</h3>
                   <p>Laisse-nous tes coordonnées pour recevoir nos prochaines ressources.</p>
@@ -201,7 +201,7 @@ export default function BookPage() {
               <motion.div key={i} className="bp-benefit-card"
                 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}>
-                <div className="bp-benefit-icon"><b.icon size={28} color="#00f0ff" /></div>
+                <div className="bp-benefit-icon"><b.icon size={28} color="#59a5ff" /></div>
                 <h3>{b.title}</h3>
                 <p>{b.desc}</p>
               </motion.div>

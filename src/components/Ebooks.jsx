@@ -7,27 +7,28 @@ import { sanitizeInput } from '../utils/security'
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const ebooks = [
   {
-    title: "Le Développeur Augmenté",
-    description: "Le guide pratique pour apprendre à penser avec l'IA — pas juste lui demander du code. 12 chapitres, frameworks actionnables, cas réels africains.",
+    title: 'Le Développeur Augmenté',
+    description:
+      "Le guide pratique pour apprendre à penser avec l'IA — pas juste lui demander du code. 12 chapitres, frameworks actionnables, cas réels africains.",
     cover: '/ebooks/cover-developpeur-augmente.png',
     file: '/le-developpeur-augmente-wendtech.pdf',
     pages: 12,
-    downloads: 500,
-  },
+    downloads: 500
+  }
 ]
 
 /* ── Formulaire de capture avant téléchargement ── */
 const LeadForm = ({ ebook, onClose }) => {
-  const [form, setForm]     = useState({ name: '', email: '', phone: '' })
-  const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const [form, setForm] = useState({ name: '', email: '', phone: '' })
+  const [status, setStatus] = useState('idle') // idle | submitting | success
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setForm(prev => ({ ...prev, [name]: value.replace(/<[^>]*>|javascript:|on\w+=/gi, '') }))
+    setForm((prev) => ({ ...prev, [name]: value.replace(/<[^>]*>|javascript:|on\w+=/gi, '') }))
   }
 
   const triggerDownload = () => {
@@ -44,10 +45,10 @@ const LeadForm = ({ ebook, onClose }) => {
 
     const templateParams = {
       title: 'Nouveau lead — Téléchargement Ebook',
-      name:  sanitizeInput(form.name)  || 'Non renseigné',
-      nom:   sanitizeInput(form.name)  || 'Non renseigné',
+      name: sanitizeInput(form.name) || 'Non renseigné',
+      nom: sanitizeInput(form.name) || 'Non renseigné',
       email: sanitizeInput(form.email),
-      message: `📥 Ebook téléchargé : ${ebook.title}\n📞 Téléphone : ${sanitizeInput(form.phone) || 'Non renseigné'}\n📧 Email : ${sanitizeInput(form.email)}`,
+      message: `Ebook téléchargé : ${ebook.title}\nTéléphone : ${sanitizeInput(form.phone) || 'Non renseigné'}\nEmail : ${sanitizeInput(form.email)}`
     }
 
     try {
@@ -67,85 +68,75 @@ const LeadForm = ({ ebook, onClose }) => {
 
   return (
     <motion.div
-      className="lead-overlay"
+      className="modal-overlay"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={e => e.target === e.currentTarget && onClose()}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <motion.div
-        className="lead-box"
-        initial={{ opacity: 0, y: 24, scale: 0.95 }}
+        className="modal"
+        initial={{ opacity: 0, y: 24, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 24, scale: 0.95 }}
+        exit={{ opacity: 0, y: 24, scale: 0.96 }}
         transition={{ type: 'spring', damping: 22, stiffness: 280 }}
       >
-        <button className="lead-close" onClick={onClose} aria-label="Fermer"><X size={18} /></button>
+        <button className="modal-close" onClick={onClose} aria-label="Fermer">
+          <X size={18} />
+        </button>
 
         <AnimatePresence mode="wait">
           {status === 'success' ? (
             <motion.div
               key="success"
-              className="lead-success"
-              initial={{ opacity: 0, scale: 0.9 }}
+              className="modal-success"
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <CheckCircle size={52} color="#00f0ff" />
-              <h3>C'est parti !</h3>
-              <p>Ton téléchargement démarre dans un instant…</p>
+              <CheckCircle size={52} />
+              <h3>C&apos;est parti !</h3>
+              <p>Votre téléchargement démarre dans un instant…</p>
             </motion.div>
           ) : (
             <motion.div key="form">
-              <div className="lead-header">
-                <Download size={26} color="#00f0ff" />
-                <div>
-                  <h3>Téléchargement gratuit</h3>
-                  <p>Laisse-nous tes coordonnées pour recevoir nos prochaines ressources.</p>
-                </div>
-              </div>
+              <h3>Téléchargement gratuit</h3>
+              <p>Laissez-nous vos coordonnées pour recevoir nos prochaines ressources.</p>
 
               <form onSubmit={handleSubmit} noValidate>
-                <input
-                  name="name"
-                  type="text"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Ton prénom (optionnel)"
-                  maxLength={100}
-                  autoComplete="off"
-                  className="lead-input"
-                />
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="Ton adresse email *"
-                  maxLength={254}
-                  autoComplete="off"
-                  required
-                  className="lead-input"
-                />
-                <input
-                  name="phone"
-                  type="tel"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="Ton numéro WhatsApp (optionnel)"
-                  maxLength={20}
-                  autoComplete="off"
-                  className="lead-input"
-                />
-                <p className="lead-note">Données confidentielles — aucun spam.</p>
+                <div className="field">
+                  <label htmlFor="lead-name">Prénom (optionnel)</label>
+                  <input
+                    id="lead-name" name="name" type="text"
+                    value={form.name} onChange={handleChange}
+                    placeholder="Votre prénom" maxLength={100} autoComplete="off"
+                  />
+                </div>
+
+                <div className="field">
+                  <label htmlFor="lead-email">Adresse courriel *</label>
+                  <input
+                    id="lead-email" name="email" type="email"
+                    value={form.email} onChange={handleChange}
+                    placeholder="votre@email.com" maxLength={254} autoComplete="off" required
+                  />
+                </div>
+
+                <div className="field">
+                  <label htmlFor="lead-phone">Numéro WhatsApp (optionnel)</label>
+                  <input
+                    id="lead-phone" name="phone" type="tel"
+                    value={form.phone} onChange={handleChange}
+                    placeholder="+226 XX XX XX XX" maxLength={20} autoComplete="off"
+                  />
+                </div>
+
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  style={{ width: '100%', justifyContent: 'center', marginTop: '4px' }}
+                  style={{ width: '100%', marginTop: '8px' }}
                   disabled={status === 'submitting' || !form.email}
                 >
-                  {status === 'submitting'
-                    ? 'Envoi…'
-                    : <><Download size={17} /> Télécharger maintenant</>}
+                  {status === 'submitting' ? 'Envoi…' : <><Download size={17} /> Télécharger maintenant</>}
                 </button>
               </form>
             </motion.div>
@@ -162,84 +153,59 @@ const Ebooks = () => {
   const [activeEbook, setActiveEbook] = useState(null)
 
   return (
-    <section className="ebooks" id="ebooks">
-      <motion.div
-        ref={ref}
-        className="ebooks-container"
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="section-tag">Ressources Gratuites</span>
-        <h2 className="section-title">
-          Nos <span className="gradient">Ebooks</span>
-        </h2>
-        <p className="section-desc">
-          Téléchargez gratuitement nos guides et ressources pour booster votre business digital.
-        </p>
+    <section className="ebooks" id="ebooks" ref={ref}>
+      <div className="container">
+        <motion.div
+          className="section-head"
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="eyebrow">Ressources gratuites</span>
+          <h2 className="section-title">
+            Nos <span className="hl">ebooks</span>
+          </h2>
+          <p className="section-desc">
+            Téléchargez gratuitement nos guides pour booster votre business digital.
+          </p>
+        </motion.div>
 
-        {ebooks.length === 0 ? (
-          <motion.div
-            className="ebooks-empty"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.3 }}
-          >
-            <FileText size={64} color="#00f0ff" />
-            <h3>Bientôt disponible</h3>
-            <p>Nos ebooks gratuits arrivent très prochainement. Restez connectés !</p>
-          </motion.div>
-        ) : (
-          <div className="ebooks-grid">
-            {ebooks.map((ebook, index) => (
-              <motion.div
-                key={index}
-                className="ebook-card"
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <div className="ebook-cover">
-                  {ebook.cover ? (
-                    <img src={ebook.cover} alt={`Couverture ${ebook.title}`} loading="lazy" />
-                  ) : (
-                    <FileText size={48} color="#00f0ff" style={{ opacity: 0.6 }} />
-                  )}
+        <div className="ebooks-grid">
+          {ebooks.map((ebook, index) => (
+            <motion.article
+              className="card ebook-card"
+              key={ebook.title}
+              initial={{ opacity: 0, y: 28 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <img src={ebook.cover} alt={`Couverture ${ebook.title}`} loading="lazy" />
+
+              <div>
+                <h3>{ebook.title}</h3>
+                <p>{ebook.description}</p>
+
+                <div className="ebook-meta">
+                  <span><FileText size={15} /> {ebook.pages} chapitres</span>
+                  <span><Download size={15} /> {ebook.downloads}+ téléchargements</span>
                 </div>
-                <div className="ebook-content">
-                  <h3>{ebook.title}</h3>
-                  <p>{ebook.description}</p>
-                  <div className="ebook-meta">
-                    <span><FileText size={16} /> {ebook.pages} chapitres</span>
-                    <span><Download size={16} /> {ebook.downloads}+ téléchargements</span>
-                  </div>
-                  <div className="ebook-actions">
-                    <a
-                      href={ebook.file}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary"
-                    >
-                      <Eye size={18} /> Aperçu
-                    </a>
-                    <button
-                      onClick={() => setActiveEbook(ebook)}
-                      className="btn btn-primary"
-                    >
-                      <Download size={18} /> Télécharger
-                    </button>
-                  </div>
+
+                <div className="ebook-actions">
+                  <a href={ebook.file} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                    <Eye size={16} /> Aperçu
+                  </a>
+                  <button onClick={() => setActiveEbook(ebook)} className="btn btn-primary">
+                    <Download size={16} /> Télécharger
+                  </button>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
-      </motion.div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
 
       <AnimatePresence>
-        {activeEbook && (
-          <LeadForm ebook={activeEbook} onClose={() => setActiveEbook(null)} />
-        )}
+        {activeEbook && <LeadForm ebook={activeEbook} onClose={() => setActiveEbook(null)} />}
       </AnimatePresence>
     </section>
   )

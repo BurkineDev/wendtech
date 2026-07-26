@@ -1,124 +1,89 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { Check } from 'lucide-react'
 
-const pricingPlans = [
+const plans = [
   {
     name: 'Site Vitrine',
-    description: 'Idéal pour démarrer',
+    desc: 'Idéal pour démarrer votre présence en ligne',
     price: 'Sur devis',
-    currency: '',
-    features: [
-      '5-10 pages',
-      'Design responsive',
-      'SEO basique',
-      'Formulaire de contact',
-      '1 mois de support'
-    ],
-    featured: false
+    featured: false,
+    features: ['5 à 10 pages', 'Design responsive', 'SEO de base', 'Formulaire de contact', '1 mois de support']
   },
   {
     name: 'Site E-commerce',
-    description: 'Pour vendre en ligne',
+    desc: 'Pour vendre en ligne dès le premier jour',
     price: 'Sur devis',
-    currency: '',
-    features: [
-      'Boutique complète',
-      'Gestion produits',
-      'Paiements en ligne intégrés',
-      'Tableau de bord',
-      '3 mois de support'
-    ],
-    featured: true
+    featured: true,
+    features: ['Boutique complète', 'Gestion des produits', 'Paiements en ligne intégrés', 'Tableau de bord', '3 mois de support']
   },
   {
-    name: 'App Mobile',
-    description: 'Pour votre activité',
+    name: 'Application Mobile',
+    desc: 'Pour piloter votre activité partout',
     price: 'Sur devis',
-    currency: '',
-    features: [
-      'Android & iOS',
-      'Gestion stocks',
-      'Notifications push',
-      'Interface intuitive',
-      '6 mois de support'
-    ],
-    featured: false
+    featured: false,
+    features: ['Android & iOS', 'Gestion des stocks', 'Notifications push', 'Interface intuitive', '6 mois de support']
   }
 ]
 
 const Pricing = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
-
-  const handleClick = (e) => {
+  const scrollToContact = (e) => {
     e.preventDefault()
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <section className="pricing" id="tarifs">
-      <motion.div
-        ref={ref}
-        className="section-header"
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="section-tag">Nos Tarifs</span>
-        <h2 className="section-title">
-          Packs <span className="gradient">PME</span>
-        </h2>
-        <p className="section-desc">
-          Des offres adaptées à tous les budgets pour démarrer votre transformation digitale.
-        </p>
-      </motion.div>
+    <section className="pricing" id="forfaits" ref={ref}>
+      <div className="container">
+        <motion.div
+          className="section-head center"
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="eyebrow">Nos forfaits</span>
+          <h2 className="section-title">
+            Des offres claires, adaptées à <span className="hl">votre budget</span>
+          </h2>
+          <p className="section-desc">
+            Chaque projet est unique : nous établissons un devis gratuit et sans engagement
+            à partir de vos besoins réels.
+          </p>
+        </motion.div>
 
-      <motion.div
-        className="pricing-grid"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        {pricingPlans.map((plan, index) => (
-          <motion.div
-            key={index}
-            className={`pricing-card ${plan.featured ? 'featured' : ''}`}
-            variants={itemVariants}
-            whileHover={{ y: -10 }}
-          >
-            <div className="pricing-name">{plan.name}</div>
-            <div className="pricing-desc">{plan.description}</div>
-            <div className="pricing-price">
-              <span className="amount">{plan.price}</span>
-              <span className="currency"> {plan.currency}</span>
-            </div>
-            <ul className="pricing-features">
-              {plan.features.map((feature, i) => (
-                <li key={i}>{feature}</li>
-              ))}
-            </ul>
-            <button
-              className={`btn ${plan.featured ? 'btn-primary' : 'btn-secondary'}`}
-              style={{ width: '100%' }}
-              onClick={handleClick}
+        <div className="pricing-grid">
+          {plans.map((plan, index) => (
+            <motion.div
+              className={`card plan ${plan.featured ? 'featured' : ''}`}
+              key={plan.name}
+              initial={{ opacity: 0, y: 28 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              Choisir
-            </button>
-          </motion.div>
-        ))}
-      </motion.div>
+              {plan.featured && <span className="plan-tag">Le plus demandé</span>}
+              <h3>{plan.name}</h3>
+              <p className="plan-desc">{plan.desc}</p>
+              <div className="plan-price">{plan.price}</div>
+
+              <ul>
+                {plan.features.map((feature) => (
+                  <li key={feature}><Check size={17} /> {feature}</li>
+                ))}
+              </ul>
+
+              <a
+                href="#contact"
+                className={`btn ${plan.featured ? 'btn-primary' : 'btn-ghost'}`}
+                onClick={scrollToContact}
+              >
+                Demander un devis
+              </a>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
