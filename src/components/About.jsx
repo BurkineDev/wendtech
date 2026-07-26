@@ -1,79 +1,81 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import { Lightbulb, Users, Shield, TrendingUp } from 'lucide-react'
+import Reveal from './ui/Reveal'
+import { Eyebrow, PillButton } from './ui/Bits'
 
 const values = [
-  { icon: Lightbulb, label: 'Innovation Locale' },
-  { icon: Users, label: 'Accessibilité' },
-  { icon: Shield, label: 'Confiance' },
-  { icon: TrendingUp, label: 'Impact Positif' }
+  {
+    icon: Lightbulb,
+    title: 'Innovation continue',
+    text: "Nous suivons l'évolution des technologies pour proposer des solutions actuelles, pas des recettes dépassées."
+  },
+  {
+    icon: Users,
+    title: 'Accessibilité',
+    text: 'Des tarifs et des outils pensés pour que chaque commerçant, artisan ou PME puisse franchir le pas du numérique.'
+  },
+  {
+    icon: Shield,
+    title: 'Confiance',
+    text: 'Vous gardez la main sur vos comptes, vos données et vos accès. Aucun verrouillage, aucune dépendance.'
+  },
+  {
+    icon: TrendingUp,
+    title: 'Impact positif',
+    text: 'Notre réussite se mesure à la vôtre : plus de visibilité, plus de ventes, plus de temps gagné.'
+  }
 ]
 
-const About = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
-
-  return (
-    <section className="about" id="apropos">
-      <motion.div
-        ref={ref}
-        className="about-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <motion.div className="about-visual" variants={itemVariants}>
-          <div className="about-image">
-            🌍
+const About = () => (
+  <section className="section" id="apropos">
+    <div className="container two-col">
+      <div>
+        <Reveal><Eyebrow>À propos de l'agence</Eyebrow></Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="h2">
+            Wendtech, une agence digitale{' '}
+            <span className="accent">internationale</span> au service des PME.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{ marginTop: 36 }}>
+            <PillButton href="#contact">Nous contacter</PillButton>
           </div>
-        </motion.div>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <img
+            className="about__visual"
+            src="/decor/ball-honeycomb.svg"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            style={{ marginTop: 50 }}
+          />
+        </Reveal>
+      </div>
 
-        <motion.div className="about-content" variants={itemVariants}>
-          <span className="section-tag">À Propos</span>
-          <h2>Qui sommes-nous ?</h2>
-          <p>
-            Wendtech est une agence digitale basée au Burkina Faso, spécialisée dans 
-            le développement web et mobile, ainsi que le consulting pour les PME et 
-            les acteurs des marchés locaux.
+      <div>
+        <Reveal>
+          <p className="muted-2" style={{ lineHeight: 1.7, marginBottom: 44 }}>
+            Wendtech est une agence digitale internationale, spécialisée dans le développement
+            web et mobile, ainsi que le consulting pour les PME et les entreprises de toutes
+            tailles, partout dans le monde. Fondée avec la vision de démocratiser le numérique
+            pour tous, nous croyons que chaque commerçant, artisan ou entrepreneur mérite une
+            présence en ligne professionnelle pour booster ses ventes et sa visibilité.
           </p>
-          <p>
-            Fondée avec la vision de démocratiser le numérique au Burkina, nous croyons 
-            que chaque commerçant, artisan ou entrepreneur mérite une présence en ligne 
-            professionnelle pour booster ses ventes et sa visibilité.
-          </p>
+        </Reveal>
 
-          <div className="values-grid">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                className="value-item"
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 + index * 0.1 }}
-              >
-                <div className="value-icon">
-                  <value.icon size={24} color="#00f0ff" />
-                </div>
-                <span>{value.label}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </motion.div>
-    </section>
-  )
-}
+        <div className="timeline">
+          {values.map((value, i) => (
+            <Reveal className="timeline__item" key={value.title} delay={i * 0.07}>
+              <value.icon size={44} strokeWidth={1.4} className="accent" />
+              <h3 className="h3">{value.title}</h3>
+              <p className="muted">{value.text}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)
 
 export default About
