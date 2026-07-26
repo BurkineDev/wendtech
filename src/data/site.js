@@ -15,6 +15,11 @@ export const CONTACT = {
   location: 'Burkina Faso · Canada'
 }
 
+/**
+ * Réseaux sociaux du pied de page.
+ * Une entrée dont l'url vaut '#' n'est pas affichée : renseignez l'adresse
+ * réelle pour faire apparaître l'icône.
+ */
 export const SOCIALS = [
   { label: 'Facebook', url: '#' },
   { label: 'LinkedIn', url: '#' },

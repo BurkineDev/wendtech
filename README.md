@@ -6,16 +6,16 @@ Site web moderne et sécurisé pour Wendtech, agence digitale au Burkina Faso.
 
 - **React 18** - Framework UI
 - **Vite** - Build tool ultra-rapide
+- **React Router** - Navigation entre l'accueil et la page Ebooks
 - **Framer Motion** - Animations fluides
 - **Lucide React** - Icônes modernes
-- **DOMPurify** - Sanitisation XSS
+- **EmailJS** - Envoi des formulaires sans backend
 
 ## 🔒 Sécurité
 
 Le site inclut plusieurs mesures de sécurité :
 
-- ✅ Protection XSS (Cross-Site Scripting)
-- ✅ Validation et sanitisation des entrées
+- ✅ Validation et sanitisation des entrées (`src/utils/security.js`, sans dépendance externe)
 - ✅ Rate limiting sur le formulaire
 - ✅ Headers de sécurité (CSP, X-Frame-Options, etc.)
 - ✅ Attributs de sécurité HTML5
@@ -160,18 +160,24 @@ Modifiez les variables CSS dans `src/styles/index.css` :
 
 ```css
 :root {
-  --accent-cyan: #00f0ff;
-  --accent-gold: #ffa726;
-  --accent-purple: #a855f7;
+  --bg:     #0a0a0a;  /* fond principal */
+  --card:   #141414;  /* cartes et encarts */
+  --accent: #cdf32b;  /* accent lime */
+  --fg:     #ffffff;  /* texte */
+  --muted:  #b5b5b5;  /* texte secondaire */
   /* ... */
 }
 ```
 
 ### Polices
 
-Les polices utilisées sont :
-- **Exo 2** - Titres (tech/futuriste)
-- **Rajdhani** - Corps de texte
+**Hanken Grotesk** (400 à 800) pour l'ensemble du site, chargée depuis Google Fonts
+dans `index.html`.
+
+### Coordonnées
+
+Téléphones, courriel, WhatsApp et liens de navigation sont centralisés dans
+`src/data/site.js` — un seul fichier à modifier.
 
 ## 📄 Licence
 

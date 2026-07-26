@@ -1,8 +1,12 @@
 import { Facebook, Linkedin, MessageCircle, Phone, Mail } from 'lucide-react'
 import { useNavigate } from 'react-router'
-import { CONTACT, NAV_LINKS } from '../data/site'
+import { CONTACT, NAV_LINKS, SOCIALS } from '../data/site'
 
 const socialIcons = { Facebook, LinkedIn: Linkedin, WhatsApp: MessageCircle }
+
+// On n'affiche que les réseaux dont l'adresse est renseignée dans data/site.js :
+// une icône sans destination vaut moins que pas d'icône du tout.
+const activeSocials = SOCIALS.filter((s) => s.url && s.url !== '#')
 
 const serviceLinks = [
   'Développement Web',
@@ -32,26 +36,24 @@ const Footer = () => {
             Votre partenaire digital international. Nous accompagnons les PME et entreprises
             dans leur transformation numérique avec des solutions innovantes et accessibles.
           </p>
-          <div className="footer__social">
-            {[
-              { label: 'Facebook', url: '#' },
-              { label: 'LinkedIn', url: '#' },
-              { label: 'WhatsApp', url: CONTACT.whatsapp.url }
-            ].map((social) => {
-              const Icon = socialIcons[social.label]
-              return (
-                <a
-                  key={social.label}
-                  href={social.url}
-                  aria-label={social.label}
-                  target={social.url.startsWith('http') ? '_blank' : undefined}
-                  rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                >
-                  <Icon size={20} />
-                </a>
-              )
-            })}
-          </div>
+          {activeSocials.length > 0 && (
+            <div className="footer__social">
+              {activeSocials.map((social) => {
+                const Icon = socialIcons[social.label]
+                return (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon size={20} />
+                  </a>
+                )
+              })}
+            </div>
+          )}
         </div>
 
         <nav className="footer__col" aria-label="Navigation">
