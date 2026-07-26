@@ -1,5 +1,6 @@
 import { Monitor, Smartphone, BarChart3, Wrench, Users, Asterisk } from 'lucide-react'
 import Reveal from './ui/Reveal'
+import { Link } from 'react-router'
 import { Eyebrow } from './ui/Bits'
 import FloatingDecor from './ui/FloatingDecor'
 
@@ -8,6 +9,7 @@ const services = [
     number: '01',
     icon: Monitor,
     title: 'Développement Web',
+    href: '/services/creation-site-web',
     description: 'Sites vitrines, e-commerce et plateformes personnalisées pour une présence en ligne professionnelle.',
     features: [
       'Sites responsive (mobile-friendly)',
@@ -20,6 +22,7 @@ const services = [
     number: '02',
     icon: Smartphone,
     title: 'Applications Mobiles',
+    href: '/services/application-mobile',
     description: 'Apps Android/iOS pour gestion de stocks, ventes en ligne ou services marchands.',
     features: [
       'Applications natives et hybrides',
@@ -56,6 +59,7 @@ const services = [
     number: '05',
     icon: Users,
     title: "Plateforme d'Inscriptions",
+    href: '/services/plateforme-inscriptions',
     description: "Ouverture à heure fixe, quota automatique, file d'attente et anti-bot : une plateforme stable même au rush.",
     features: [
       'Anti-surcharge garantie',
@@ -85,7 +89,12 @@ const Services = () => (
 
       <div className="cards cards--3">
         {services.map((service, i) => (
-          <Reveal className="card card--hover" key={service.number} delay={(i % 3) * 0.07}>
+          <Reveal
+            as={service.href ? 'div' : 'div'}
+            className={`card${service.href ? ' card--hover' : ''}`}
+            key={service.number}
+            delay={(i % 3) * 0.07}
+          >
             <div className="service__head">
               <span className="service__num">{service.number}</span>
               <span className="service__icon">
@@ -102,6 +111,9 @@ const Services = () => (
                 </li>
               ))}
             </ul>
+            {service.href && (
+              <Link className="link-accent" to={service.href}>En savoir plus</Link>
+            )}
           </Reveal>
         ))}
       </div>

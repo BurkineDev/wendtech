@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import { BrowserRouter, HashRouter } from 'react-router'
 import App from './App'
 import './styles/index.css'
@@ -9,10 +9,16 @@ import './styles/index.css'
 // une URL quelconque — il bascule alors sur un routeur à ancre.
 const Router = import.meta.env.VITE_HASH_ROUTER === '1' ? HashRouter : BrowserRouter
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root')
+const app = (
   <React.StrictMode>
     <Router>
       <App />
     </Router>
   </React.StrictMode>
 )
+
+// Le build produit du HTML prérendu (scripts/prerender.mjs) : on l'hydrate
+// au lieu de le jeter. En développement le conteneur est vide.
+if (container.hasChildNodes()) hydrateRoot(container, app)
+else createRoot(container).render(app)
