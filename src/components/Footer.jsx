@@ -1,5 +1,5 @@
 import { Facebook, Linkedin, MessageCircle, Phone, Mail } from 'lucide-react'
-import { useNavigate } from 'react-router'
+import { useNavigate, Link } from 'react-router'
 import { CONTACT, NAV_LINKS, SOCIALS } from '../data/site'
 
 const socialIcons = { Facebook, LinkedIn: Linkedin, WhatsApp: MessageCircle }
@@ -9,11 +9,12 @@ const socialIcons = { Facebook, LinkedIn: Linkedin, WhatsApp: MessageCircle }
 const activeSocials = SOCIALS.filter((s) => s.url && s.url !== '#')
 
 const serviceLinks = [
-  'Développement Web',
-  'Applications Mobiles',
-  'Consulting Digital',
-  'Maintenance & Hébergement',
-  "Plateforme d'Inscriptions"
+  { label: 'Création de site web',        to: '/services/creation-site-web' },
+  { label: 'Site e-commerce',             to: '/services/site-e-commerce' },
+  { label: 'Application mobile',          to: '/services/application-mobile' },
+  { label: "Plateforme d'inscriptions",   to: '/services/plateforme-inscriptions' },
+  { label: 'Consulting digital',          to: null },
+  { label: 'Maintenance & hébergement',   to: null }
 ]
 
 const Footer = () => {
@@ -67,10 +68,10 @@ const Footer = () => {
 
         <nav className="footer__col" aria-label="Services">
           <h3 className="h5">Services</h3>
-          {serviceLinks.map((label) => (
-            <a key={label} href="#services" onClick={(e) => goToSection(e, 'services')}>
-              {label}
-            </a>
+          {serviceLinks.map((link) => (
+            link.to
+              ? <Link key={link.label} to={link.to}>{link.label}</Link>
+              : <a key={link.label} href="#services" onClick={(e) => goToSection(e, 'services')}>{link.label}</a>
           ))}
         </nav>
 

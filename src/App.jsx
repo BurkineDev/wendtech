@@ -16,10 +16,19 @@ import Contact from './components/Contact'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import ScrollProgress from './components/ui/ScrollProgress'
 import BookPage from './components/BookPage'
+import ServicePage from './components/ServicePage'
+import useDocumentMeta from './hooks/useDocumentMeta'
 
 function HomePage() {
   const [loading, setLoading] = useState(true)
+
+  useDocumentMeta({
+    title: 'Agence de développement web et mobile | Wendtech',
+    description: "Wendtech conçoit sites web, boutiques en ligne et applications mobiles pour les PME. Consulting digital, maintenance et plateformes d'inscriptions. Devis gratuit.",
+    path: '/'
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000)
@@ -30,6 +39,7 @@ function HomePage() {
     <>
       <Loader isLoading={loading} />
       <a className="skip-link" href="#contenu">Aller au contenu principal</a>
+      <ScrollProgress />
       <Topbar />
       <Navbar />
       <main id="contenu">
@@ -55,6 +65,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/services/:slug" element={<ServicePage />} />
       <Route path="/ebooks" element={<BookPage />} />
     </Routes>
   )

@@ -3,6 +3,23 @@
    Thème sombre + accent lime, typographie Hanken Grotesk.
    ========================================================================== */
 
+/* Police auto-hébergée : évite deux connexions externes et la requête
+   bloquante vers Google Fonts, au bénéfice du temps d'affichage. */
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 800; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: italic; font-weight: 400; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-400-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: italic; font-weight: 800; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-800-italic.woff2') format('woff2'); }
+
 :root {
   --bg:          #0a0a0a;
   --bg-alt:      #0d0d0d;
@@ -89,10 +106,18 @@ button { font: inherit; color: inherit; }
 .has-decor { position: relative; overflow: hidden; }
 .has-decor > .container { position: relative; z-index: 1; }
 
-.decor { position: absolute; pointer-events: none; user-select: none; }
+.decor { position: absolute; pointer-events: none; user-select: none; display: block; }
+.decor img { width: 100%; height: auto; display: block; will-change: transform; }
 .decor--left   { left: -120px; bottom: -120px; width: 420px; opacity: .55; }
 .decor--right  { right: -100px; top: -80px;    width: 380px; opacity: .5; }
 .decor--center { left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(640px, 130%); opacity: .5; }
+
+/* Progression de lecture, juste sous l'en-tête collant */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  height: 3px; background: var(--accent);
+  transform-origin: 0 50%; transform: scaleX(0);
+}
 
 .accent  { color: var(--accent); }
 .muted   { color: var(--muted); line-height: 1.65; }
@@ -139,6 +164,15 @@ button { font: inherit; color: inherit; }
   transition: border-color .22s ease, background .22s ease, transform .22s ease;
 }
 .card--hover:hover { border-color: var(--accent); background: var(--card-hover); transform: translateY(-4px); }
+
+.link-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 26px; padding: 0;
+  background: none; border: 0; cursor: pointer;
+  color: var(--muted); font-size: 15px; font-weight: 600;
+  transition: color .18s ease;
+}
+.link-back:hover { color: var(--accent); }
 
 .link-accent {
   color: var(--accent); font-weight: 600;

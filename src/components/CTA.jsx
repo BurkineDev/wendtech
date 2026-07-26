@@ -1,6 +1,7 @@
 import { Smile } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import { SolidButton } from './ui/Bits'
+import FloatingDecor from './ui/FloatingDecor'
 
 const CTA = () => {
   const goToContact = (e) => {
@@ -10,7 +11,7 @@ const CTA = () => {
 
   return (
     <section className="cta has-decor">
-      <img className="decor decor--center" src="/decor/cta-glow.svg" alt="" aria-hidden="true" loading="lazy" />
+      <FloatingDecor src="/decor/cta-glow.svg" className="decor--center" pulse />
 
       <div className="cta__inner">
         <Reveal><p className="eyebrow eyebrow--center">Collaborons</p></Reveal>

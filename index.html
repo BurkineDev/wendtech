@@ -24,25 +24,78 @@
     </script>
 
     <!-- SEO -->
-    <title>Wendtech | Agence Digitale Internationale</title>
-    <meta name="description" content="Wendtech - Votre agence de développement web, applications mobiles et consulting digital pour les PME et entreprises du monde entier. Solutions performantes, abordables et sur mesure." />
-    <meta name="keywords" content="agence digitale, développement web, application mobile, PME, e-commerce, consulting digital, transformation digitale, plateforme inscriptions, international" />
+    <title>Agence de développement web et mobile | Wendtech</title>
+    <meta name="description" content="Wendtech conçoit sites web, boutiques en ligne et applications mobiles pour les PME. Consulting digital, maintenance et plateformes d'inscriptions. Devis gratuit." />
     <meta name="author" content="Wendtech" />
+    <link rel="canonical" href="https://www.wendtech.site/" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Wendtech | Agence Digitale Internationale" />
-    <meta property="og:description" content="Votre partenaire pour la transformation digitale des PME et entreprises partout dans le monde" />
+    <meta property="og:site_name" content="Wendtech" />
+    <meta property="og:title" content="Agence de développement web et mobile | Wendtech" />
+    <meta property="og:description" content="Sites web, boutiques en ligne, applications mobiles et consulting digital pour les PME. Devis gratuit." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://www.wendtech.site/" />
+    <meta property="og:image" content="https://www.wendtech.site/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Wendtech — la technologie au service de votre croissance digitale" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Agence de développement web et mobile | Wendtech" />
+    <meta name="twitter:description" content="Sites web, boutiques en ligne, applications mobiles et consulting digital pour les PME. Devis gratuit." />
+    <meta name="twitter:image" content="https://www.wendtech.site/og-image.jpg" />
 
     <!-- Security Headers (applied via vercel.json/netlify.toml) -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Polices auto-hébergées (voir @font-face dans src/styles/index.css) -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/hanken-grotesk-latin-400-normal.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/hanken-grotesk-latin-700-normal.woff2" />
+
+    <!-- Données structurées : identité, coordonnées et catalogue de services -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://www.wendtech.site/#organisation",
+      "name": "Wendtech",
+      "description": "Agence digitale spécialisée dans le développement web et mobile, le e-commerce et le consulting digital pour les PME.",
+      "url": "https://www.wendtech.site/",
+      "image": "https://www.wendtech.site/og-image.jpg",
+      "logo": "https://www.wendtech.site/og-image.jpg",
+      "email": "saristide99@gmail.com",
+      "telephone": ["+22665170778", "+18192190558"],
+      "priceRange": "$$",
+      "address": { "@type": "PostalAddress", "addressCountry": "BF" },
+      "areaServed": [
+        { "@type": "Country", "name": "Burkina Faso" },
+        { "@type": "Country", "name": "Canada" }
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+22665170778",
+        "contactType": "customer service",
+        "availableLanguage": ["fr"],
+        "areaServed": ["BF", "CA"]
+      }],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services numériques",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Développement web", "description": "Sites vitrines, e-commerce et plateformes personnalisées." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Applications mobiles", "description": "Applications Android et iOS pour la gestion et la vente." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consulting digital", "description": "Stratégie numérique, marketing digital et formation." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maintenance et hébergement", "description": "Suivi technique, sauvegardes, mises à jour et sécurité." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plateforme d'inscriptions", "description": "Ouverture à heure fixe, quotas, file d'attente et anti-bot." } }
+        ]
+      }
+    }
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

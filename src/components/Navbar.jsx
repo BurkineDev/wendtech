@@ -119,7 +119,8 @@ const Navbar = () => {
         </button>
       </header>
 
-      {createPortal(drawer, document.body)}
+      {/* Le portail vise document.body : indisponible au prérendu côté serveur. */}
+      {typeof document !== 'undefined' ? createPortal(drawer, document.body) : null}
     </>
   )
 }

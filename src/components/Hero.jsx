@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import Reveal from './ui/Reveal'
 import { Eyebrow, PillButton } from './ui/Bits'
 import { STATS } from '../data/site'
@@ -59,9 +60,32 @@ const CounterStat = ({ target, suffix, label }) => {
   )
 }
 
+/** Les ondulations du héro descendent moins vite que la page et respirent. */
+const HeroRipples = () => {
+  const reduce = useReducedMotion()
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 800], [0, 120])
+
+  if (reduce) {
+    return <img className="hero__ripples" src="/decor/hero-ripples.svg" alt="" aria-hidden="true" />
+  }
+
+  return (
+    <motion.img
+      className="hero__ripples"
+      src="/decor/hero-ripples.svg"
+      alt=""
+      aria-hidden="true"
+      style={{ y }}
+      animate={{ scale: [1, 1.05, 1], opacity: [0.55, 0.4, 0.55] }}
+      transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+    />
+  )
+}
+
 const Hero = () => (
   <section className="hero" id="accueil">
-    <img className="hero__ripples" src="/decor/hero-ripples.svg" alt="" aria-hidden="true" />
+    <HeroRipples />
 
     <div className="container hero__inner">
       <Reveal><Eyebrow>Agence digitale internationale</Eyebrow></Reveal>
