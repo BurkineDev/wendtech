@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router'
 import Loader from './components/Loader'
 import Topbar from './components/Topbar'
 import Navbar from './components/Navbar'

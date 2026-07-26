@@ -1,5 +1,5 @@
 import { Facebook, Linkedin, MessageCircle, Phone, Mail } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { CONTACT, NAV_LINKS } from '../data/site'
 
 const socialIcons = { Facebook, LinkedIn: Linkedin, WhatsApp: MessageCircle }
