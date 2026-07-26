@@ -1,78 +1,40 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import Reveal from './ui/Reveal'
+import { Eyebrow } from './ui/Bits'
 
 const clients = [
-  {
-    name: 'Camelot Traiteur',
-    logo: '/clients/camelot.png',
-    sector: 'Traiteur & Livraison'
-  },
-  {
-    name: 'GlobalPC',
-    logo: '/clients/globalpc.webp',
-    sector: 'Informatique'
-  },
-  {
-    name: 'Hanh Travel',
-    logo: '/clients/hanh-travel.png',
-    sector: 'Tourisme'
-  },
-  {
-    name: 'DABO Avocat',
-    logo: '/clients/dabo-avocat.webp',
-    sector: 'Cabinet Juridique'
-  },
-  {
-    name: 'Peintre Intérieur Québec',
-    logo: '/clients/peintre-quebec.png',
-    sector: 'Rénovation'
-  }
+  { name: 'Camelot Traiteur',           logo: '/clients/camelot.png',       sector: 'Traiteur & Livraison' },
+  { name: 'GlobalPC',                   logo: '/clients/globalpc.webp',     sector: 'Informatique' },
+  { name: 'Hanh Travel',                logo: '/clients/hanh-travel.png',   sector: 'Tourisme' },
+  { name: 'DABO Avocat',                logo: '/clients/dabo-avocat.webp',  sector: 'Cabinet Juridique' },
+  { name: 'Peintre Intérieur Québec',   logo: '/clients/peintre-quebec.png', sector: 'Rénovation' }
 ]
 
-const Clients = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+const Clients = () => (
+  <section className="section section--alt" id="clients">
+    <div className="container">
+      <Reveal><Eyebrow>Nos partenaires</Eyebrow></Reveal>
 
-  return (
-    <section className="clients" id="clients">
-      <motion.div
-        ref={ref}
-        className="clients-container"
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="section-tag">Nos Partenaires</span>
-        <h2 className="section-title">
-          Ils Nous Font <span className="gradient">Confiance</span>
-        </h2>
-        
-        <div className="clients-grid">
-          {clients.map((client, index) => (
-            <motion.div
-              key={index}
-              className="client-card"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-            >
-              <img 
-                src={client.logo} 
-                alt={`Logo ${client.name}`}
-                loading="lazy"
-                width="180"
-                height="80"
-              />
-              <span className="client-sector">{client.sector}</span>
-            </motion.div>
-          ))}
+      <Reveal delay={0.05}>
+        <div className="split">
+          <h2 className="h2 split__title">
+            Ils nous font <span className="accent">confiance</span>
+          </h2>
+          <p className="split__text">
+            Rejoignez nos clients satisfaits et boostez votre présence digitale.
+          </p>
         </div>
+      </Reveal>
 
-        <p className="clients-cta">
-          Rejoignez nos clients satisfaits et boostez votre présence digitale !
-        </p>
-      </motion.div>
-    </section>
-  )
-}
+      <div className="clients-grid">
+        {clients.map((client, i) => (
+          <Reveal className="client" key={client.name} delay={(i % 5) * 0.06}>
+            <img src={client.logo} alt={`Logo ${client.name}`} loading="lazy" width="180" height="80" />
+            <span className="client__sector">{client.sector}</span>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+)
 
 export default Clients

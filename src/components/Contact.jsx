@@ -1,26 +1,25 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { Phone, Mail, MessageCircle } from 'lucide-react'
+import { Phone, Mail, MessageCircle, Send } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import {
   sanitizeInput,
   validateFormData,
   sanitizeFormData,
-  RateLimiter,
-  escapeHTML
+  RateLimiter
 } from '../utils/security'
+import Reveal from './ui/Reveal'
+import { Eyebrow, PillButton } from './ui/Bits'
+import { CONTACT } from '../data/site'
 
-// EmailJS configuration
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const contactInfo = [
-  { icon: Phone, label: 'Téléphone', value: '+226 65 17 07 78' },
-  { icon: Phone, label: 'Téléphone', value: '+1 819 219 0558' },
-  { icon: Mail, label: 'Email', value: 'saristide99@gmail.com' },
-  { icon: MessageCircle, label: 'WhatsApp', value: '+226 65 17 07 78' }
+  { icon: Phone,         label: 'Téléphone',  value: CONTACT.phoneBF.display, href: CONTACT.phoneBF.href },
+  { icon: Phone,         label: 'Téléphone',  value: CONTACT.phoneCA.display, href: CONTACT.phoneCA.href },
+  { icon: Mail,          label: 'Courriel',   value: CONTACT.email.display,   href: CONTACT.email.href },
+  { icon: MessageCircle, label: 'WhatsApp',   value: CONTACT.phoneBF.display, href: CONTACT.whatsapp.url }
 ]
 
 const serviceOptions = [
@@ -29,57 +28,41 @@ const serviceOptions = [
   { value: 'e-commerce', label: 'Site E-commerce' },
   { value: 'app-mobile', label: 'Application Mobile' },
   { value: 'consulting', label: 'Consulting Digital' },
-  { value: 'plateforme-inscriptions', label: 'Plateforme d\'Inscriptions' },
+  { value: 'plateforme-inscriptions', label: "Plateforme d'Inscriptions" },
   { value: 'autre', label: 'Autre' }
 ]
 
 const Contact = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: '',
-    message: ''
-  })
-  
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '', service: '', message: '' })
   const [status, setStatus] = useState({ type: '', messages: [] })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Sanitize input in real-time
+  // Nettoyage à la volée : on retire les balises et schémas dangereux.
   const handleChange = (e) => {
     const { name, value } = e.target
-    // Remove dangerous characters as user types
     const sanitized = value.replace(/<[^>]*>|javascript:|on\w+=/gi, '')
-    setFormData(prev => ({ ...prev, [name]: sanitized }))
-    // Clear status when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: sanitized }))
     if (status.type) setStatus({ type: '', messages: [] })
   }
 
-  // Handle paste to sanitize pasted content
   const handlePaste = (e) => {
     e.preventDefault()
     const text = e.clipboardData.getData('text')
-    const sanitized = sanitizeInput(text)
     const { name } = e.target
-    setFormData(prev => ({ ...prev, [name]: prev[name] + sanitized }))
+    setFormData((prev) => ({ ...prev, [name]: prev[name] + sanitizeInput(text) }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    // Rate limiting check
+
     if (!RateLimiter.canSubmit()) {
-      const remaining = RateLimiter.getRemainingTime()
       setStatus({
         type: 'warning',
-        messages: [`Trop de tentatives. Veuillez patienter ${remaining} secondes.`]
+        messages: [`Trop de tentatives. Veuillez patienter ${RateLimiter.getRemainingTime()} secondes.`]
       })
       return
     }
 
-    // Validate form data
     const validation = validateFormData(formData)
     if (!validation.isValid) {
       setStatus({ type: 'error', messages: validation.errors })
@@ -90,48 +73,33 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      // Get sanitized data
-      const sanitizedData = sanitizeFormData(formData)
+      const data = sanitizeFormData(formData)
+      const serviceLabel = serviceOptions.find((o) => o.value === data.service)?.label || data.service
 
-      // Find service label for email
-      const serviceLabel = serviceOptions.find(opt => opt.value === sanitizedData.service)?.label || sanitizedData.service
-
-      // Prepare email template parameters (matching EmailJS template variables)
       const templateParams = {
         title: `Demande ${serviceLabel}`,
-        name: sanitizedData.name,
-        nom: sanitizedData.name,
-        email: sanitizedData.email,
-        message: `Service: ${serviceLabel}\nTéléphone: ${sanitizedData.phone}\n\n${sanitizedData.message}`
+        name: data.name,
+        nom: data.name,
+        email: data.email,
+        message: `Service: ${serviceLabel}\nTéléphone: ${data.phone}\n\n${data.message}`
       }
 
-      // Send email via EmailJS
       if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          templateParams,
-          EMAILJS_PUBLIC_KEY
-        )
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
       } else {
-        // Fallback: log data if EmailJS not configured
-        console.log('EmailJS non configuré. Données du formulaire:', templateParams)
+        console.log('EmailJS non configuré. Données du formulaire :', templateParams)
       }
 
-      // Success
       setStatus({
         type: 'success',
         messages: ['Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.']
       })
-
       RateLimiter.recordAttempt()
 
-      // Reset form after delay
       setTimeout(() => {
         setFormData({ name: '', phone: '', email: '', service: '', message: '' })
         setStatus({ type: '', messages: [] })
       }, 5000)
-
     } catch (error) {
       console.error('Erreur envoi email:', error)
       setStatus({
@@ -143,67 +111,47 @@ const Contact = () => {
     }
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
-
   return (
-    <section className="contact" id="contact">
-      <motion.div
-        ref={ref}
-        className="contact-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <motion.div className="contact-info" variants={itemVariants}>
-          <span className="section-tag">Contact</span>
-          <h2>Parlons de Votre Projet</h2>
-          <p>
-            Prêt à digitaliser votre entreprise ? Contactez-nous pour un devis 
-            gratuit et sans engagement.
-          </p>
-          
+    <section className="section section--alt has-decor" id="contact">
+      <img className="decor decor--left" src="/decor/cta-glow.svg" alt="" aria-hidden="true" loading="lazy" />
+
+      <div className="container two-col">
+        <div>
+          <Reveal><Eyebrow>Contact</Eyebrow></Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="h2 mb-sm">Parlons de votre projet</h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="muted">
+              Prêt à digitaliser votre entreprise ? Contactez-nous pour un devis gratuit
+              et sans engagement.
+            </p>
+          </Reveal>
+
           <div className="contact-details">
-            {contactInfo.map((item, index) => (
-              <div key={index} className="contact-item">
-                <div className="contact-icon">
-                  <item.icon size={22} color="#00f0ff" />
-                </div>
-                <div className="contact-item-text">
-                  <span className="label">{item.label}</span>
-                  <span className="value">{item.value}</span>
-                </div>
-              </div>
+            {contactInfo.map((item, i) => (
+              <Reveal className="contact-item" key={`${item.label}-${item.value}-${i}`} delay={i * 0.06}>
+                <span className="contact-item__icon"><item.icon size={22} /></span>
+                <span>
+                  <span className="contact-item__label">{item.label}</span>
+                  <a className="contact-item__value" href={item.href}>{item.value}</a>
+                </span>
+              </Reveal>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div className="contact-form" variants={itemVariants}>
-          <form onSubmit={handleSubmit} noValidate>
-            {/* Status Messages */}
+        <Reveal className="card" delay={0.1}>
+          <form className="form" onSubmit={handleSubmit} noValidate>
             {status.type && (
-              <div className={`form-${status.type}`} role="alert">
-                {status.type === 'error' && <strong>⚠️ Erreur(s) :</strong>}
-                {status.type === 'success' && '✅ '}
-                {status.type === 'warning' && '⏳ '}
+              <div className={`form-status form-status--${status.type}`} role="alert">
                 {status.messages.length === 1 ? (
                   <span>{status.messages[0]}</span>
                 ) : (
-                  <ul style={{ margin: '0.5rem 0 0 1.5rem', padding: 0 }}>
-                    {status.messages.map((msg, i) => (
-                      <li key={i}>{escapeHTML(msg)}</li>
-                    ))}
-                  </ul>
+                  <>
+                    <strong>Erreur(s) :</strong>
+                    <ul>{status.messages.map((msg, i) => <li key={i}>{msg}</li>)}</ul>
+                  </>
                 )}
               </div>
             )}
@@ -211,95 +159,47 @@ const Contact = () => {
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="name">Nom complet</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onPaste={handlePaste}
-                  placeholder="Votre nom"
-                  required
-                  maxLength={100}
-                  autoComplete="off"
-                />
+                <input id="name" name="name" type="text" value={formData.name}
+                  onChange={handleChange} onPaste={handlePaste}
+                  placeholder="Votre nom" required maxLength={100} autoComplete="off" />
               </div>
               <div className="form-group">
                 <label htmlFor="phone">Téléphone</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  onPaste={handlePaste}
-                  placeholder="+XX XX XX XX XX"
-                  required
-                  maxLength={20}
-                  autoComplete="off"
-                />
+                <input id="phone" name="phone" type="tel" value={formData.phone}
+                  onChange={handleChange} onPaste={handlePaste}
+                  placeholder="+XX XX XX XX XX" required maxLength={20} autoComplete="off" />
               </div>
             </div>
 
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                onPaste={handlePaste}
-                placeholder="votre@email.com"
-                required
-                maxLength={254}
-                autoComplete="off"
-              />
+              <input id="email" name="email" type="email" value={formData.email}
+                onChange={handleChange} onPaste={handlePaste}
+                placeholder="votre@email.com" required maxLength={254} autoComplete="off" />
             </div>
 
             <div className="form-group">
               <label htmlFor="service">Service souhaité</label>
-              <select
-                id="service"
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-                required
-              >
+              <select id="service" name="service" value={formData.service} onChange={handleChange} required>
                 {serviceOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
+                  <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
               </select>
             </div>
 
             <div className="form-group">
               <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                onPaste={handlePaste}
-                placeholder="Décrivez votre projet..."
-                required
-                minLength={10}
-                maxLength={2000}
-              />
+              <textarea id="message" name="message" value={formData.message}
+                onChange={handleChange} onPaste={handlePaste}
+                placeholder="Décrivez votre projet…" required minLength={10} maxLength={2000} />
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary"
-              style={{ width: '100%' }}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma Demande'}
-            </button>
+            <PillButton type="submit" variant="btn--block" icon={Send} disabled={isSubmitting}>
+              {isSubmitting ? 'Envoi en cours…' : 'Envoyer ma demande'}
+            </PillButton>
           </form>
-        </motion.div>
-      </motion.div>
+        </Reveal>
+      </div>
     </section>
   )
 }
