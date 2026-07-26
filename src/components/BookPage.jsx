@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { motion, AnimatePresence } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import { sanitizeInput } from '../utils/security'
+import useDocumentMeta from '../hooks/useDocumentMeta'
 import {
   ArrowLeft, Download, BookOpen, Users, Zap, Target,
   CheckCircle, X, ChevronRight, Star
@@ -109,6 +110,12 @@ const LeadModal = ({ onClose }) => {
 export default function BookPage() {
   const navigate     = useNavigate()
   const [modal, setModal] = useState(false)
+
+  useDocumentMeta({
+    title: 'Le Développeur Augmenté — ebook gratuit | Wendtech',
+    description: "Guide pratique gratuit pour apprendre à penser avec l'IA plutôt que lui demander du code : 12 chapitres, frameworks actionnables et cas réels africains.",
+    path: '/ebooks'
+  })
 
   const fadeUp = { hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 

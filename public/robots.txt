@@ -7,10 +7,5 @@ Allow: /
 # Sitemap location
 Sitemap: https://www.wendtech.site/sitemap.xml
 
-# Disallow admin/sensitive paths (if any in future)
-Disallow: /api/
-Disallow: /_next/
-Disallow: /admin/
-
 # Crawl delay for polite crawling
 Crawl-delay: 1

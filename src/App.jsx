@@ -18,9 +18,16 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import ScrollProgress from './components/ui/ScrollProgress'
 import BookPage from './components/BookPage'
+import useDocumentMeta from './hooks/useDocumentMeta'
 
 function HomePage() {
   const [loading, setLoading] = useState(true)
+
+  useDocumentMeta({
+    title: 'Agence de développement web et mobile | Wendtech',
+    description: "Wendtech conçoit sites web, boutiques en ligne et applications mobiles pour les PME. Consulting digital, maintenance et plateformes d'inscriptions. Devis gratuit.",
+    path: '/'
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000)

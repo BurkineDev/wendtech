@@ -3,6 +3,23 @@
    Thème sombre + accent lime, typographie Hanken Grotesk.
    ========================================================================== */
 
+/* Police auto-hébergée : évite deux connexions externes et la requête
+   bloquante vers Google Fonts, au bénéfice du temps d'affichage. */
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 800; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: italic; font-weight: 400; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-400-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: italic; font-weight: 800; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-800-italic.woff2') format('woff2'); }
+
 :root {
   --bg:          #0a0a0a;
   --bg-alt:      #0d0d0d;
