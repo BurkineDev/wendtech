@@ -1,82 +1,67 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import { Target, Globe, Wallet, Rocket } from 'lucide-react'
+import Reveal from './ui/Reveal'
+import { Eyebrow } from './ui/Bits'
 
 const features = [
   {
+    number: '01',
     icon: Target,
-    title: 'Solutions Sur Mesure',
+    title: 'Solutions sur mesure',
     description: 'Des solutions personnalisées adaptées aux besoins spécifiques des PME et commerçants burkinabè.'
   },
   {
+    number: '02',
     icon: Globe,
-    title: 'Expertise Locale',
+    title: 'Expertise locale',
     description: 'Nous comprenons les réalités du marché burkinabè et les défis uniques de nos entrepreneurs.'
   },
   {
+    number: '03',
     icon: Wallet,
-    title: 'Prix Accessibles',
+    title: 'Prix accessibles',
     description: 'Des tarifs transparents et adaptés au budget des entreprises locales, sans compromis sur la qualité.'
   },
   {
+    number: '04',
     icon: Rocket,
-    title: 'Accompagnement Complet',
+    title: 'Accompagnement complet',
     description: "De l'idée au lancement, nous vous guidons à chaque étape de votre transformation digitale."
   }
 ]
 
-const Features = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+const Features = () => (
+  <section className="section has-decor" id="pourquoi">
+    <img className="decor decor--right" src="/decor/orb-ribbed.svg" alt="" aria-hidden="true" loading="lazy" />
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
+    <div className="container">
+      <Reveal><Eyebrow>Pourquoi nous choisir</Eyebrow></Reveal>
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
+      <Reveal delay={0.05}>
+        <div className="split">
+          <h2 className="h2 split__title">
+            Pourquoi choisir <span className="accent">Wendtech</span> ?
+          </h2>
+          <p className="split__text">
+            Une expertise locale combinée à des technologies modernes pour propulser
+            votre entreprise, quel que soit votre point de départ.
+          </p>
+        </div>
+      </Reveal>
 
-  return (
-    <section className="features" id="features">
-      <motion.div
-        ref={ref}
-        className="section-header"
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="section-tag">Pourquoi Nous</span>
-        <h2 className="section-title">
-          Pourquoi Choisir <span className="gradient">Wendtech</span> ?
-        </h2>
-        <p className="section-desc">
-          Une expertise locale combinée à des technologies modernes pour propulser votre entreprise.
-        </p>
-      </motion.div>
-
-      <motion.div
-        className="features-grid"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        {features.map((feature, index) => (
-          <motion.div key={index} className="feature-card" variants={itemVariants}>
-            <div className="feature-icon">
-              <feature.icon size={32} color="#00f0ff" />
+      <div className="cards cards--4">
+        {features.map((feature, i) => (
+          <Reveal className="benefit" key={feature.number} delay={(i % 4) * 0.07}>
+            <div className="benefit__head">
+              <span className="benefit__num">{feature.number}</span>
+              <feature.icon size={40} strokeWidth={1.5} />
             </div>
-            <h3>{feature.title}</h3>
-            <p>{feature.description}</p>
-          </motion.div>
+            <h3 className="h4">{feature.title}</h3>
+            <p className="muted">{feature.description}</p>
+          </Reveal>
         ))}
-      </motion.div>
-    </section>
-  )
-}
+      </div>
+    </div>
+  </section>
+)
 
 export default Features

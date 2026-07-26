@@ -1,101 +1,52 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { ShoppingCart, Store, Building2, Smartphone, Globe, Code } from 'lucide-react'
+import { ShoppingCart, Store, Building2, Smartphone, Globe, Code, ArrowUpRight } from 'lucide-react'
+import Reveal from './ui/Reveal'
+import { Eyebrow } from './ui/Bits'
 
-const services = [
-  {
-    icon: Globe,
-    title: 'Sites Vitrines',
-    description: 'Présentez votre entreprise avec un site moderne et professionnel.',
-    color: '#00f0ff'
-  },
-  {
-    icon: ShoppingCart,
-    title: 'E-commerce',
-    description: 'Vendez vos produits en ligne avec des solutions de paiement intégrées.',
-    color: '#a855f7'
-  },
-  {
-    icon: Smartphone,
-    title: 'Applications Mobiles',
-    description: 'Apps Android/iOS pour gérer votre activité où que vous soyez.',
-    color: '#ffa726'
-  },
-  {
-    icon: Store,
-    title: 'Gestion de Stocks',
-    description: 'Suivez vos inventaires et évitez les ruptures de stock.',
-    color: '#10b981'
-  },
-  {
-    icon: Code,
-    title: 'Solutions Sur Mesure',
-    description: 'Développement personnalisé selon vos besoins spécifiques.',
-    color: '#ef4444'
-  },
-  {
-    icon: Building2,
-    title: 'Transformation Digitale',
-    description: 'Accompagnement complet pour digitaliser votre entreprise.',
-    color: '#6366f1'
-  }
+const realisations = [
+  { icon: Globe,       title: 'Sites vitrines',        description: 'Présentez votre entreprise avec un site moderne et professionnel.' },
+  { icon: ShoppingCart, title: 'E-commerce',            description: 'Vendez vos produits en ligne avec des solutions de paiement intégrées.' },
+  { icon: Smartphone,  title: 'Applications mobiles',  description: 'Apps Android/iOS pour gérer votre activité où que vous soyez.' },
+  { icon: Store,       title: 'Gestion de stocks',     description: 'Suivez vos inventaires et évitez les ruptures de stock.' },
+  { icon: Code,        title: 'Solutions sur mesure',  description: 'Développement personnalisé selon vos besoins spécifiques.' },
+  { icon: Building2,   title: 'Transformation digitale', description: 'Accompagnement complet pour digitaliser votre entreprise.' }
 ]
 
-const Portfolio = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+const Portfolio = () => (
+  <section className="section section--alt" id="portfolio">
+    <div className="container">
+      <Reveal><Eyebrow>Ce que nous réalisons</Eyebrow></Reveal>
 
-  return (
-    <section className="portfolio" id="portfolio">
-      <motion.div
-        ref={ref}
-        className="section-header"
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        <span className="section-tag">Nos Expertises</span>
-        <h2 className="section-title">
-          Ce Que Nous <span className="gradient">Réalisons</span>
-        </h2>
-        <p className="section-desc">
-          Des solutions digitales adaptées aux besoins de chaque entreprise, partout dans le monde.
-        </p>
-      </motion.div>
+      <Reveal delay={0.05}>
+        <div className="split">
+          <h2 className="h2 split__title">Des réalisations adaptées à chaque entreprise</h2>
+          <p className="split__text">
+            Des solutions digitales pensées pour les besoins concrets des PME,
+            partout dans le monde.
+          </p>
+        </div>
+      </Reveal>
 
-      <div className="portfolio-grid">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            className="portfolio-item-simple"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: index * 0.1, duration: 0.4 }}
-          >
-            <div 
-              className="portfolio-icon" 
-              style={{ background: `${service.color}20`, color: service.color }}
-            >
-              <service.icon size={32} />
+      <div className="cards cards--3">
+        {realisations.map((item, i) => (
+          <Reveal className="card card--hover" key={item.title} delay={(i % 3) * 0.07}>
+            <div className="service__head">
+              <span className="service__icon"><item.icon size={26} strokeWidth={2} /></span>
+              <ArrowUpRight size={26} strokeWidth={2} className="accent" />
             </div>
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-          </motion.div>
+            <h3 className="h3">{item.title}</h3>
+            <p className="muted">{item.description}</p>
+          </Reveal>
         ))}
       </div>
 
-      <motion.div 
-        className="portfolio-cta"
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.5 }}
-      >
-        <p>Vous avez un projet en tête ?</p>
-        <a href="#contact" className="btn btn-primary">
-          Demander un Devis Gratuit
-        </a>
-      </motion.div>
-    </section>
-  )
-}
+      <Reveal delay={0.1}>
+        <p style={{ display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap', marginTop: 'clamp(32px, 4vw, 52px)', fontSize: 19 }}>
+          <span className="muted-2">Créons quelque chose de grand ensemble.</span>
+          <a className="link-accent" href="#contact">Devis gratuit</a>
+        </p>
+      </Reveal>
+    </div>
+  </section>
+)
 
 export default Portfolio
