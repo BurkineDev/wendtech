@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { Lightbulb, Users, Shield, TrendingUp } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import { Eyebrow, PillButton } from './ui/Bits'
@@ -25,6 +26,32 @@ const values = [
   }
 ]
 
+/** La sphère alvéolée tourne lentement sur elle-même et flotte légèrement. */
+const SpinningBall = () => {
+  const reduce = useReducedMotion()
+  const common = {
+    className: 'about__visual',
+    src: '/decor/ball-honeycomb.svg',
+    alt: '',
+    'aria-hidden': true,
+    loading: 'lazy',
+    style: { marginTop: 50 }
+  }
+
+  if (reduce) return <img {...common} />
+
+  return (
+    <motion.img
+      {...common}
+      animate={{ rotate: 360, y: [0, -14, 0] }}
+      transition={{
+        rotate: { duration: 55, repeat: Infinity, ease: 'linear' },
+        y: { duration: 7, repeat: Infinity, ease: 'easeInOut' }
+      }}
+    />
+  )
+}
+
 const About = () => (
   <section className="section" id="apropos">
     <div className="container two-col">
@@ -42,14 +69,7 @@ const About = () => (
           </div>
         </Reveal>
         <Reveal delay={0.15}>
-          <img
-            className="about__visual"
-            src="/decor/ball-honeycomb.svg"
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            style={{ marginTop: 50 }}
-          />
+          <SpinningBall />
         </Reveal>
       </div>
 

@@ -9,6 +9,7 @@ import {
 } from '../utils/security'
 import Reveal from './ui/Reveal'
 import { Eyebrow, PillButton } from './ui/Bits'
+import FloatingDecor from './ui/FloatingDecor'
 import { CONTACT } from '../data/site'
 
 const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
@@ -113,7 +114,7 @@ const Contact = () => {
 
   return (
     <section className="section section--alt has-decor" id="contact">
-      <img className="decor decor--left" src="/decor/cta-glow.svg" alt="" aria-hidden="true" loading="lazy" />
+      <FloatingDecor src="/decor/cta-glow.svg" className="decor--left" parallax={70} pulse />
 
       <div className="container two-col">
         <div>

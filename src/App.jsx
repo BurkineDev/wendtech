@@ -16,6 +16,7 @@ import Contact from './components/Contact'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import ScrollProgress from './components/ui/ScrollProgress'
 import BookPage from './components/BookPage'
 
 function HomePage() {
@@ -30,6 +31,7 @@ function HomePage() {
     <>
       <Loader isLoading={loading} />
       <a className="skip-link" href="#contenu">Aller au contenu principal</a>
+      <ScrollProgress />
       <Topbar />
       <Navbar />
       <main id="contenu">

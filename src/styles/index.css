@@ -89,10 +89,18 @@ button { font: inherit; color: inherit; }
 .has-decor { position: relative; overflow: hidden; }
 .has-decor > .container { position: relative; z-index: 1; }
 
-.decor { position: absolute; pointer-events: none; user-select: none; }
+.decor { position: absolute; pointer-events: none; user-select: none; display: block; }
+.decor img { width: 100%; height: auto; display: block; will-change: transform; }
 .decor--left   { left: -120px; bottom: -120px; width: 420px; opacity: .55; }
 .decor--right  { right: -100px; top: -80px;    width: 380px; opacity: .5; }
 .decor--center { left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(640px, 130%); opacity: .5; }
+
+/* Progression de lecture, juste sous l'en-tête collant */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  height: 3px; background: var(--accent);
+  transform-origin: 0 50%; transform: scaleX(0);
+}
 
 .accent  { color: var(--accent); }
 .muted   { color: var(--muted); line-height: 1.65; }

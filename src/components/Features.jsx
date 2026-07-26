@@ -1,6 +1,7 @@
 import { Target, Globe, Wallet, Rocket } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import { Eyebrow } from './ui/Bits'
+import FloatingDecor from './ui/FloatingDecor'
 
 const features = [
   {
@@ -31,7 +32,7 @@ const features = [
 
 const Features = () => (
   <section className="section has-decor" id="pourquoi">
-    <img className="decor decor--right" src="/decor/orb-ribbed.svg" alt="" aria-hidden="true" loading="lazy" />
+    <FloatingDecor src="/decor/orb-ribbed.svg" className="decor--right" spin={70} parallax={80} />
 
     <div className="container">
       <Reveal><Eyebrow>Pourquoi nous choisir</Eyebrow></Reveal>

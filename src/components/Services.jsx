@@ -1,6 +1,7 @@
 import { Monitor, Smartphone, BarChart3, Wrench, Users, Asterisk } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import { Eyebrow } from './ui/Bits'
+import FloatingDecor from './ui/FloatingDecor'
 
 const services = [
   {
@@ -67,7 +68,7 @@ const services = [
 
 const Services = () => (
   <section className="section section--alt has-decor" id="services">
-    <img className="decor decor--left" src="/decor/glow-shape.svg" alt="" aria-hidden="true" loading="lazy" />
+    <FloatingDecor src="/decor/glow-shape.svg" className="decor--left" parallax={60} pulse />
 
     <div className="container">
       <Reveal><Eyebrow>Nos expertises</Eyebrow></Reveal>
