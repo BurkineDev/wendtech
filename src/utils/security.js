@@ -19,7 +19,7 @@ export const sanitizeInput = (input) => {
   if (typeof input !== 'string') return '';
   return input
     .replace(/<[^>]*>/g, '') // Supprime les balises HTML
-    .replace(/[<>\"'`\\]/g, '') // Supprime caractères dangereux
+    .replace(/[<>"'`\\]/g, '') // Supprime caractères dangereux
     .replace(/javascript:/gi, '') // Supprime javascript:
     .replace(/on\w+=/gi, '') // Supprime les event handlers
     .replace(/data:/gi, '') // Supprime data: URIs
@@ -39,7 +39,7 @@ export const isValidEmail = (email) => {
  * Valide un numéro de téléphone
  */
 export const isValidPhone = (phone) => {
-  const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,20}$/;
+  const phoneRegex = /^[+]?[0-9\s\-()]{8,20}$/;
   return phoneRegex.test(phone);
 };
 
