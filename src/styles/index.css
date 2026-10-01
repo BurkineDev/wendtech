@@ -39,12 +39,6 @@
   --ink:         #0a0a0a;
   --danger:      #ff6b6b;
 
-  /* Alias hérités — consommés par BookPage.css (page /ebooks) */
-  --bg-dark:       var(--bg);
-  --bg-card:       var(--card);
-  --text-primary:  var(--fg);
-  --text-secondary:var(--muted);
-
   --maxw:        1280px;
   --gutter:      clamp(20px, 4vw, 56px);
   --section-y:   clamp(72px, 9vw, 110px);
@@ -180,6 +174,11 @@ button { font: inherit; color: inherit; }
   transition: border-color .18s ease;
 }
 .link-accent:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+.inline-cta {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px;
+  margin-top: clamp(32px, 4vw, 48px); font-size: 17px;
+}
 
 /* ------------------------------------------------------------- Bouton pilule */
 .btn { display: inline-flex; align-items: center; color: var(--fg); max-width: 100%; border: 0; background: none; cursor: pointer; }

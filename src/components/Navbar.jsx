@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Grip, X, Phone, Mail, MapPin } from 'lucide-react'
@@ -10,6 +10,12 @@ const Navbar = () => {
   const [stuck, setStuck] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+
+  // Entrée du menu correspondant à la page affichée.
+  const activeId = pathname.startsWith('/ebooks') ? 'ebooks'
+    : pathname.startsWith('/services') ? 'services'
+    : 'accueil'
 
   useEffect(() => {
     const onScroll = () => setStuck(window.scrollY > 8)
@@ -34,7 +40,10 @@ const Navbar = () => {
     e.preventDefault()
     setDrawerOpen(false)
     if (id === 'ebooks') { navigate('/ebooks'); return }
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const target = document.getElementById(id)
+    // Hors de l'accueil la section n'existe pas : on y retourne, ancre comprise.
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    else navigate({ pathname: '/', hash: id })
   }, [navigate])
 
   const drawer = (
@@ -93,10 +102,10 @@ const Navbar = () => {
         </a>
 
         <nav className="nav" aria-label="Navigation principale">
-          {NAV_LINKS.map((link, i) => (
+          {NAV_LINKS.map((link) => (
             <a
               key={link.id}
-              className={`nav__link${i === 0 ? ' is-active' : ''}`}
+              className={`nav__link${link.id === activeId ? ' is-active' : ''}`}
               href={`#${link.id}`}
               onClick={(e) => goToSection(e, link.id)}
             >

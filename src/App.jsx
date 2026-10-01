@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router'
+import { Routes, Route, useLocation } from 'react-router'
 import Loader from './components/Loader'
 import Topbar from './components/Topbar'
 import Navbar from './components/Navbar'
@@ -61,7 +61,21 @@ function HomePage() {
   )
 }
 
+// Le routeur ne gère pas le défilement : on remonte en haut à chaque
+// changement de page, ou on rejoint la section visée par l'ancre.
+function useScrollOnNavigate() {
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    const target = hash && document.getElementById(hash.slice(1))
+    if (target) target.scrollIntoView({ block: 'start' })
+    else window.scrollTo(0, 0)
+  }, [pathname, hash])
+}
+
 function App() {
+  useScrollOnNavigate()
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

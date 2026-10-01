@@ -1,115 +1,55 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { motion, AnimatePresence } from 'framer-motion'
-import emailjs from '@emailjs/browser'
-import { sanitizeInput } from '../utils/security'
+import { AnimatePresence } from 'framer-motion'
+import { ArrowLeft, Download, Eye, BookOpen, Users, Zap, Target, Star } from 'lucide-react'
+import Topbar from './Topbar'
+import Navbar from './Navbar'
+import Footer from './Footer'
+import WhatsAppButton from './WhatsAppButton'
+import ScrollProgress from './ui/ScrollProgress'
+import Reveal from './ui/Reveal'
+import FloatingDecor from './ui/FloatingDecor'
+import { Eyebrow, PillButton, SolidButton } from './ui/Bits'
+import { ebooks, LeadForm } from './Ebooks'
 import useDocumentMeta from '../hooks/useDocumentMeta'
-import {
-  ArrowLeft, Download, BookOpen, Users, Zap, Target,
-  CheckCircle, X, ChevronRight, Star
-} from 'lucide-react'
 import './BookPage.css'
 
-const PDF_FILE = '/le-developpeur-augmente-wendtech.pdf'
-const COVER   = '/ebooks/cover-developpeur-augmente.png'
+const book = ebooks[0]
 
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const stats = [
+  { num: '12', label: 'Chapitres' },
+  { num: '500+', label: 'Développeurs' },
+  { num: '100 %', label: 'Gratuit' }
+]
 
-/* ─── Lead modal ─── */
-const LeadModal = ({ onClose }) => {
-  const [form, setForm]     = useState({ name: '', email: '', phone: '' })
-  const [status, setStatus] = useState('idle')
+const benefits = [
+  { icon: Target,   title: 'Penser avant de coder',  desc: "Le framework Architecture Cognitive t'apprend à définir le vrai problème avant d'ouvrir ton éditeur." },
+  { icon: Zap,      title: 'Prompts qui produisent', desc: 'Finis les réponses génériques. Tu construis des prompts précis qui donnent du code utilisable dès le premier essai.' },
+  { icon: Users,    title: 'Cas réels africains',    desc: "Des exemples tirés de projets PME au Burkina, en Côte d'Ivoire et au Sénégal — pas des cas Silicon Valley hors-sol." },
+  { icon: BookOpen, title: 'Anti-patterns évités',   desc: '12 formulations catastrophiques identifiées et remplacées. Tu ne perdras plus des heures à débugger du code IA.' }
+]
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm(p => ({ ...p, [name]: value.replace(/<[^>]*>|javascript:|on\w+=/gi, '') }))
-  }
+const chapters = [
+  { tag: 'Fondation',     title: 'Architecture Cognitive',     desc: "Le cadre mental pour travailler avec l'IA comme un architecte, pas un exécutant." },
+  { tag: 'Méthode',       title: 'Le Prompt Structuré',        desc: "Anatomie d'un prompt efficace : contexte, contraintes, format de sortie." },
+  { tag: 'Workflow',      title: 'Boucles de Développement',   desc: "Comment intégrer l'IA dans ton cycle de développement sans perdre le contrôle." },
+  { tag: 'Anti-patterns', title: 'Les Anti-Prompts',           desc: 'Les 12 erreurs de prompting qui sabotent ton code — et comment les éviter.' },
+  { tag: 'Pratique',      title: 'Cas Réels — PME Africaines', desc: 'Du brief client flou au déploiement : cas documentés étape par étape.' },
+  { tag: 'Futur',         title: 'Le Dev Augmenté en 2025',    desc: "Comment rester pertinent et irremplaçable face à l'évolution de l'IA." }
+]
 
-  const triggerDownload = () => {
-    const a = document.createElement('a')
-    a.href = PDF_FILE
-    a.download = 'Le-Developpeur-Augmente-Wendtech.pdf'
-    a.click()
-  }
+const reviews = [
+  { name: 'Moussa K.',      role: 'Dev Full-Stack, Dakar',   text: "J'utilisais l'IA depuis 1 an sans résultats constants. Après le chapitre 3, tout a changé. MVP livré en 3 semaines au lieu de 2 mois." },
+  { name: 'Aminata S.',     role: 'CTO Startup, Abidjan',    text: "Le framework Architecture Cognitive m'a appris à penser avant de prompter. Basique mais jamais enseigné nulle part." },
+  { name: 'Jean-Pierre T.', role: 'Dev Mobile, Ouagadougou', text: "Les anti-prompts du chapitre 4 m'ont choqué — j'utilisais 8 des 12 formulations catastrophiques. Plus maintenant." }
+]
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (!form.email) return
-    setStatus('submitting')
-    try {
-      if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          title:   'Nouveau lead — Téléchargement Ebook',
-          name:    sanitizeInput(form.name)  || 'Non renseigné',
-          nom:     sanitizeInput(form.name)  || 'Non renseigné',
-          email:   sanitizeInput(form.email),
-          message: `📥 Ebook : Le Développeur Augmenté\n📞 Tél : ${sanitizeInput(form.phone) || 'Non renseigné'}\n📧 Email : ${sanitizeInput(form.email)}`,
-        }, EMAILJS_PUBLIC_KEY)
-      }
-    } catch { /* téléchargement quand même */ }
-    setStatus('success')
-    setTimeout(() => { triggerDownload(); onClose() }, 1600)
-  }
+const initials = (name) => name.split(' ').map((n) => n[0]).join('')
 
-  return (
-    <motion.div
-      className="bp-overlay"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      onClick={e => e.target === e.currentTarget && onClose()}
-    >
-      <motion.div
-        className="bp-modal"
-        initial={{ opacity: 0, y: 28, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 28, scale: 0.95 }}
-        transition={{ type: 'spring', damping: 22, stiffness: 280 }}
-      >
-        <button className="bp-modal-close" onClick={onClose}><X size={18} /></button>
-
-        <AnimatePresence mode="wait">
-          {status === 'success' ? (
-            <motion.div key="ok" className="bp-modal-success"
-              initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-              <CheckCircle size={54} color="#00f0ff" />
-              <h3>C'est parti !</h3>
-              <p>Ton téléchargement démarre dans un instant…</p>
-            </motion.div>
-          ) : (
-            <motion.div key="form">
-              <div className="bp-modal-header">
-                <Download size={26} color="#00f0ff" />
-                <div>
-                  <h3>Téléchargement gratuit</h3>
-                  <p>Laisse-nous tes coordonnées pour recevoir nos prochaines ressources.</p>
-                </div>
-              </div>
-              <form onSubmit={handleSubmit} noValidate>
-                <input className="bp-input" name="name" type="text" value={form.name}
-                  onChange={handleChange} placeholder="Ton prénom (optionnel)" maxLength={100} />
-                <input className="bp-input" name="email" type="email" value={form.email}
-                  onChange={handleChange} placeholder="Ton adresse email *" maxLength={254} required />
-                <input className="bp-input" name="phone" type="tel" value={form.phone}
-                  onChange={handleChange} placeholder="Ton numéro WhatsApp (optionnel)" maxLength={20} />
-                <p className="bp-note">Données confidentielles — aucun spam.</p>
-                <button type="submit" className="bp-btn-primary"
-                  disabled={status === 'submitting' || !form.email}>
-                  {status === 'submitting' ? 'Envoi…' : <><Download size={17} /> Télécharger maintenant</>}
-                </button>
-              </form>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </motion.div>
-  )
-}
-
-/* ─── Page principale ─── */
 export default function BookPage() {
-  const navigate     = useNavigate()
+  const navigate = useNavigate()
   const [modal, setModal] = useState(false)
+  const openModal = () => setModal(true)
 
   useDocumentMeta({
     title: 'Le Développeur Augmenté — ebook gratuit | Wendtech',
@@ -117,182 +57,159 @@ export default function BookPage() {
     path: '/ebooks'
   })
 
-  const fadeUp = { hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
-
-  const benefits = [
-    { icon: Target, title: 'Penser avant de coder', desc: "Le framework Architecture Cognitive t'apprend à définir le vrai problème avant d'ouvrir ton éditeur." },
-    { icon: Zap,    title: 'Prompts qui produisent', desc: "Finis les réponses génériques. Tu construis des prompts précis qui donnent du code utilisable dès le premier essai." },
-    { icon: Users,  title: 'Cas réels africains',    desc: "Des exemples tirés de projets PME au Burkina, en Côte d'Ivoire et au Sénégal — pas des cas Silicon Valley hors-sol." },
-    { icon: BookOpen, title: 'Anti-patterns évités', desc: "12 formulations catastrophiques identifiées et remplacées. Tu ne perdras plus des heures à débugger du code IA." },
-  ]
-
-  const chapters = [
-    { num: '01', tag: 'Fondation',    title: 'Architecture Cognitive',    desc: "Le cadre mental pour travailler avec l'IA comme un architecte, pas un exécutant." },
-    { num: '02', tag: 'Méthode',      title: 'Le Prompt Structuré',       desc: "Anatomie d'un prompt efficace : contexte, contraintes, format de sortie." },
-    { num: '03', tag: 'Workflow',     title: 'Boucles de Développement',  desc: "Comment intégrer l'IA dans ton cycle de développement sans perdre le contrôle." },
-    { num: '04', tag: 'Anti-patterns','title': 'Les Anti-Prompts',        desc: "Les 12 erreurs de prompting qui sabotent ton code — et comment les éviter." },
-    { num: '05', tag: 'Pratique',     title: 'Cas Réels — PME Africaines',desc: "Du brief client flou au déploiement : cas documentés étape par étape." },
-    { num: '06', tag: 'Futur',        title: 'Le Dev Augmenté en 2025',   desc: "Comment rester pertinent et irremplaçable face à l'évolution de l'IA." },
-  ]
-
-  const reviews = [
-    { name: 'Moussa K.', role: 'Dev Full-Stack, Dakar',        stars: 5, text: "J'utilisais l'IA depuis 1 an sans résultats constants. Après le chapitre 3, tout a changé. MVP livré en 3 semaines au lieu de 2 mois." },
-    { name: 'Aminata S.', role: 'CTO Startup, Abidjan',        stars: 5, text: "Le framework Architecture Cognitive m'a appris à penser avant de prompter. Basique mais jamais enseigné nulle part." },
-    { name: 'Jean-Pierre T.', role: 'Dev Mobile, Ouagadougou', stars: 5, text: "Les anti-prompts du chapitre 4 m'ont choqué — j'utilisais 8 des 12 formulations catastrophiques. Plus maintenant." },
-  ]
-
   return (
-    <div className="bp-root">
-      {/* Nav bar minimale */}
-      <nav className="bp-nav">
-        <button className="bp-back" onClick={() => navigate('/')}>
-          <ArrowLeft size={18} /> Retour au site
-        </button>
-        <span className="bp-nav-logo">WEND<span>TECH</span></span>
-        <button className="bp-nav-cta" onClick={() => setModal(true)}>
-          <Download size={16} /> Télécharger
-        </button>
-      </nav>
+    <>
+      <ScrollProgress />
+      <Topbar />
+      <Navbar />
 
-      {/* ── HERO ── */}
-      <section className="bp-hero">
-        <div className="bp-hero-inner">
-          <motion.div className="bp-hero-text" variants={fadeUp} initial="hidden" animate="visible">
-            <span className="bp-tag">Ressource Gratuite</span>
-            <h1 className="bp-title">
-              Le Développeur<br />
-              <span className="bp-gradient">Augmenté</span>
-            </h1>
-            <p className="bp-subtitle">
-              Le guide pratique pour <strong>penser avec l'IA</strong> —
-              pas juste lui demander du code. 12 chapitres, frameworks actionnables,
-              cas réels du marché africain.
-            </p>
-            <div className="bp-hero-stats">
-              <div className="bp-stat"><span className="bp-stat-num">12</span><span>Chapitres</span></div>
-              <div className="bp-stat-sep" />
-              <div className="bp-stat"><span className="bp-stat-num">500+</span><span>Devs</span></div>
-              <div className="bp-stat-sep" />
-              <div className="bp-stat"><span className="bp-stat-num">100%</span><span>Gratuit</span></div>
-            </div>
-            <div className="bp-hero-actions">
-              <button className="bp-btn-primary" onClick={() => setModal(true)}>
-                <Download size={20} /> Télécharger gratuitement
-              </button>
-              <a href={PDF_FILE} target="_blank" rel="noopener noreferrer" className="bp-btn-ghost">
-                Aperçu PDF <ChevronRight size={16} />
-              </a>
-            </div>
-          </motion.div>
+      <main id="contenu">
+        {/* ── Héro ── */}
+        <section className="hero has-decor">
+          <FloatingDecor src="/decor/glow-shape.svg" className="decor--right" parallax={60} pulse />
 
-          <motion.div className="bp-hero-cover"
-            initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}>
-            <div className="bp-cover-wrap">
-              <img src={COVER} alt="Couverture Le Développeur Augmenté" />
-              <div className="bp-cover-glow" />
-            </div>
-          </motion.div>
-        </div>
-      </section>
+          <div className="container hero__inner book-hero">
+            <div>
+              <Reveal>
+                <button className="link-back" type="button" onClick={() => navigate('/')}>
+                  <ArrowLeft size={16} /> Retour à l'accueil
+                </button>
+              </Reveal>
 
-      {/* ── BÉNÉFICES ── */}
-      <section className="bp-section bp-benefits">
-        <div className="bp-container">
-          <motion.div className="bp-section-head" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <span className="bp-tag">Ce que tu vas apprendre</span>
-            <h2>Pourquoi ce livre est <span className="bp-gradient">différent</span></h2>
-          </motion.div>
-          <div className="bp-benefits-grid">
-            {benefits.map((b, i) => (
-              <motion.div key={i} className="bp-benefit-card"
-                variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}>
-                <div className="bp-benefit-icon"><b.icon size={28} color="#00f0ff" /></div>
-                <h3>{b.title}</h3>
-                <p>{b.desc}</p>
-              </motion.div>
-            ))}
+              <Reveal delay={0.05}><Eyebrow>Ressource gratuite</Eyebrow></Reveal>
+
+              <Reveal delay={0.1}>
+                <h1 className="hero__title">Le Développeur <span className="accent">Augmenté</span></h1>
+              </Reveal>
+
+              <Reveal delay={0.15}>
+                <p className="hero__lead">
+                  Le guide pratique pour <strong>penser avec l'IA</strong> — pas juste lui demander
+                  du code. 12 chapitres, frameworks actionnables, cas réels du marché africain.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.2}>
+                <div className="hero__actions">
+                  <PillButton onClick={openModal} icon={Download} variant="btn--lg">
+                    Télécharger gratuitement
+                  </PillButton>
+                  <PillButton href={book.file} target="_blank" rel="noopener noreferrer"
+                    variant="btn--ghost" icon={Eye}>
+                    Aperçu PDF
+                  </PillButton>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.25}>
+                <div className="book-stats">
+                  {stats.map((s) => (
+                    <div key={s.label}>
+                      <p className="book-stats__num accent">{s.num}</p>
+                      <p className="stat__label">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.15} className="book-hero__cover">
+              <img className="ebook__cover" src={book.cover} alt={`Couverture ${book.title}`} />
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── CHAPITRES ── */}
-      <section className="bp-section bp-chapters">
-        <div className="bp-container">
-          <motion.div className="bp-section-head" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <span className="bp-tag">Contenu</span>
-            <h2>Les <span className="bp-gradient">chapitres</span></h2>
-          </motion.div>
-          <div className="bp-chapters-list">
-            {chapters.map((ch, i) => (
-              <motion.div key={i} className="bp-chapter-row"
-                variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}>
-                <span className="bp-chapter-num">{ch.num}</span>
-                <div className="bp-chapter-body">
-                  <div className="bp-chapter-top">
-                    <span className={`bp-chapter-tag bp-tag-${ch.tag.toLowerCase().replace(/[^a-z]/g, '')}`}>{ch.tag}</span>
-                    <h3>{ch.title}</h3>
+        {/* ── Bénéfices ── */}
+        <section className="section section--alt">
+          <div className="container">
+            <Reveal><Eyebrow>Ce que tu vas apprendre</Eyebrow></Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="h2 measure">Pourquoi ce livre est <span className="accent">différent</span></h2>
+            </Reveal>
+
+            <div className="cards cards--4">
+              {benefits.map((b, i) => (
+                <Reveal className="card card--hover" key={b.title} delay={i * 0.07}>
+                  <span className="service__icon"><b.icon size={26} strokeWidth={2} /></span>
+                  <h3 className="h4">{b.title}</h3>
+                  <p className="muted">{b.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Chapitres ── */}
+        <section className="section">
+          <div className="container">
+            <Reveal><Eyebrow>Contenu</Eyebrow></Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="h2 measure">Les <span className="accent">chapitres</span></h2>
+            </Reveal>
+
+            <ol className="chapters">
+              {chapters.map((ch, i) => (
+                <Reveal as="li" className="chapter" key={ch.title} delay={i * 0.05}>
+                  <span className="chapter__num">{String(i + 1).padStart(2, '0')}</span>
+                  <div className="chapter__body">
+                    <span className="chapter__tag">{ch.tag}</span>
+                    <h3 className="h4">{ch.title}</h3>
+                    <p className="muted">{ch.desc}</p>
                   </div>
-                  <p>{ch.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+                </Reveal>
+              ))}
+            </ol>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── TÉMOIGNAGES ── */}
-      <section className="bp-section bp-reviews">
-        <div className="bp-container">
-          <motion.div className="bp-section-head" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <span className="bp-tag">Témoignages</span>
-            <h2>Ce qu'en disent les <span className="bp-gradient">développeurs</span></h2>
-          </motion.div>
-          <div className="bp-reviews-grid">
-            {reviews.map((r, i) => (
-              <motion.div key={i} className="bp-review-card"
-                variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}>
-                <div className="bp-stars">
-                  {Array.from({ length: r.stars }).map((_, s) => <Star key={s} size={15} fill="#f59e0b" color="#f59e0b" />)}
-                </div>
-                <p>"{r.text}"</p>
-                <div className="bp-review-author">
-                  <div className="bp-review-avatar">{r.name.split(' ').map(n => n[0]).join('')}</div>
-                  <div>
-                    <strong>{r.name}</strong>
-                    <span>{r.role}</span>
+        {/* ── Témoignages ── */}
+        <section className="section section--alt">
+          <div className="container">
+            <Reveal><Eyebrow>Témoignages</Eyebrow></Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="h2 measure">Ce qu'en disent les <span className="accent">développeurs</span></h2>
+            </Reveal>
+
+            <div className="cards cards--3">
+              {reviews.map((r, i) => (
+                <Reveal as="figure" className="card review" key={r.name} delay={i * 0.07}>
+                  <div className="review__stars" aria-label="5 étoiles sur 5">
+                    {Array.from({ length: 5 }).map((_, s) => <Star key={s} size={16} fill="currentColor" />)}
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  <blockquote className="muted-2">« {r.text} »</blockquote>
+                  <figcaption className="review__author">
+                    <span className="review__avatar">{initials(r.name)}</span>
+                    <span>
+                      <strong>{r.name}</strong>
+                      <span className="muted-3">{r.role}</span>
+                    </span>
+                  </figcaption>
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── CTA FINAL ── */}
-      <section className="bp-section bp-cta">
-        <div className="bp-container">
-          <motion.div className="bp-cta-box" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <h2>Prêt à coder autrement ?</h2>
-            <p>Télécharge le guide gratuitement et rejoins les 500+ développeurs qui ont changé leur façon de travailler avec l'IA.</p>
-            <button className="bp-btn-primary bp-btn-lg" onClick={() => setModal(true)}>
-              <Download size={22} /> Télécharger gratuitement
-            </button>
-          </motion.div>
-        </div>
-      </section>
+        {/* ── Appel à l'action ── */}
+        <section className="cta">
+          <div className="container cta__inner">
+            <Reveal><Eyebrow center>Prêt à coder autrement ?</Eyebrow></Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="cta__title">Télécharge le guide <span className="accent">gratuitement</span></h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <SolidButton onClick={openModal} icon={Download}>Télécharger maintenant</SolidButton>
+            </Reveal>
+          </div>
+        </section>
+      </main>
 
-      {/* ── FOOTER MINIMAL ── */}
-      <footer className="bp-footer">
-        <p>© {new Date().getFullYear()} Wendtech — <a href="/">wendtech.site</a></p>
-      </footer>
+      <Footer />
+      <WhatsAppButton />
 
       <AnimatePresence>
-        {modal && <LeadModal onClose={() => setModal(false)} />}
+        {modal && <LeadForm ebook={book} onClose={() => setModal(false)} />}
       </AnimatePresence>
-    </div>
+    </>
   )
 }

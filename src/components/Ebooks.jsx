@@ -10,7 +10,7 @@ const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
 const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
-const ebooks = [
+export const ebooks = [
   {
     title: 'Le Développeur Augmenté',
     description:
@@ -24,7 +24,7 @@ const ebooks = [
 ]
 
 /* ── Formulaire de capture avant téléchargement ── */
-const LeadForm = ({ ebook, onClose }) => {
+export const LeadForm = ({ ebook, onClose }) => {
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
   const [status, setStatus] = useState('idle') // idle | submitting | success
 
