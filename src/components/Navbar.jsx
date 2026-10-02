@@ -13,9 +13,7 @@ const Navbar = () => {
   const { pathname } = useLocation()
 
   // Entrée du menu correspondant à la page affichée.
-  const activeId = pathname.startsWith('/ebooks') ? 'ebooks'
-    : pathname.startsWith('/services') ? 'services'
-    : 'accueil'
+  const activeId = pathname.startsWith('/services') ? 'services' : 'accueil'
 
   useEffect(() => {
     const onScroll = () => setStuck(window.scrollY > 8)
@@ -39,7 +37,6 @@ const Navbar = () => {
   const goToSection = useCallback((e, id) => {
     e.preventDefault()
     setDrawerOpen(false)
-    if (id === 'ebooks') { navigate('/ebooks'); return }
     const target = document.getElementById(id)
     // Hors de l'accueil la section n'existe pas : on y retourne, ancre comprise.
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })

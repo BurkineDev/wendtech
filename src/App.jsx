@@ -11,13 +11,12 @@ import Features from './components/Features'
 import Portfolio from './components/Portfolio'
 import Pricing from './components/Pricing'
 import Clients from './components/Clients'
-import Ebooks from './components/Ebooks'
+import Products from './components/Products'
 import Contact from './components/Contact'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import ScrollProgress from './components/ui/ScrollProgress'
-import BookPage from './components/BookPage'
 import ServicePage from './components/ServicePage'
 import useDocumentMeta from './hooks/useDocumentMeta'
 
@@ -51,7 +50,7 @@ function HomePage() {
         <Portfolio />
         <Pricing />
         <Clients />
-        <Ebooks />
+        <Products />
         <Contact />
         <CTA />
       </main>
@@ -80,7 +79,6 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/services/:slug" element={<ServicePage />} />
-      <Route path="/ebooks" element={<BookPage />} />
     </Routes>
   )
 }

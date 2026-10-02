@@ -26,6 +26,23 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/ebooks",
+      "destination": "/#produits",
+      "permanent": true
+    },
+    {
+      "source": "/ebooks/:path*",
+      "destination": "/#produits",
+      "permanent": true
+    },
+    {
+      "source": "/le-developpeur-augmente-wendtech.pdf",
+      "destination": "/#produits",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!api/.*).*)",

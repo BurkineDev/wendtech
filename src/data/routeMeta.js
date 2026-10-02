@@ -56,14 +56,5 @@ export const ROUTES = [
       'Une plateforme qui tient la charge le jour J, même au pic de connexions.',
     priority: '0.9',
     changefreq: 'monthly'
-  },
-  {
-    path: '/ebooks',
-    title: 'Le Développeur Augmenté — ebook gratuit | Wendtech',
-    description:
-      "Guide pratique gratuit pour apprendre à penser avec l'IA plutôt que lui demander " +
-      'du code : 12 chapitres, frameworks actionnables et cas réels africains.',
-    priority: '0.8',
-    changefreq: 'monthly'
   }
 ]

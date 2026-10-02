@@ -22,7 +22,6 @@ const Footer = () => {
 
   const goToSection = (e, id) => {
     e.preventDefault()
-    if (id === 'ebooks') { navigate('/ebooks'); return }
     const target = document.getElementById(id)
     // Hors de l'accueil la section n'existe pas : on y retourne, ancre comprise.
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })

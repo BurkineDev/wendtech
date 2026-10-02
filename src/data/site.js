@@ -32,7 +32,7 @@ export const NAV_LINKS = [
   { id: 'services',  label: 'Services' },
   { id: 'portfolio', label: 'Portfolio' },
   { id: 'tarifs',    label: 'Tarifs' },
-  { id: 'ebooks',    label: 'Ebooks' },
+  { id: 'produits',  label: 'Produits' },
   { id: 'contact',   label: 'Contact' }
 ]
 

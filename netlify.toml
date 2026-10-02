@@ -11,6 +11,22 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
+# Anciennes adresses de l'ebook, retiré au profit de la section Produits.
+[[redirects]]
+  from = "/ebooks"
+  to = "/#produits"
+  status = 301
+
+[[redirects]]
+  from = "/ebooks/*"
+  to = "/#produits"
+  status = 301
+
+[[redirects]]
+  from = "/le-developpeur-augmente-wendtech.pdf"
+  to = "/#produits"
+  status = 301
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

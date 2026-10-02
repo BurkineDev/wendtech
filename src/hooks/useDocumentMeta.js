@@ -17,10 +17,10 @@ const setMeta = (selector, attr, value, content) => {
  * Applique titre, description et URL canonique propres à la page affichée.
  *
  * Le site étant une application cliente, toutes les routes partagent le
- * <head> de index.html : sans cela, /ebooks hériterait du titre et de la
+ * <head> de index.html : sans cela, /services/... hériterait du titre et de la
  * description de l'accueil, que les moteurs traitent comme du duplicata.
  *
- *   path  chemin de la page, ex. '/ebooks'
+ *   path  chemin de la page, ex. '/services/site-e-commerce'
  */
 const useDocumentMeta = ({ title, description, path = '/' }) => {
   useEffect(() => {

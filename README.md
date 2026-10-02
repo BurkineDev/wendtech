@@ -6,7 +6,7 @@ Site web moderne et sécurisé pour Wendtech, agence digitale au Burkina Faso.
 
 - **React 18** - Framework UI
 - **Vite** - Build tool ultra-rapide
-- **React Router** - Navigation entre l'accueil et la page Ebooks
+- **React Router** - Navigation entre l'accueil et les pages de services
 - **Framer Motion** - Animations fluides
 - **Lucide React** - Icônes modernes
 - **EmailJS** - Envoi des formulaires sans backend
