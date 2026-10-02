@@ -88,7 +88,14 @@ const Hero = () => (
     <HeroRipples />
 
     <div className="container hero__inner">
-      <Reveal><Eyebrow>Logiciels & solutions numériques · Afrique de l'Ouest</Eyebrow></Reveal>
+      <Reveal>
+        <a className="availability" href="#contact">
+          <span className="availability__dot" aria-hidden="true" />
+          Disponibles pour de nouveaux projets
+        </a>
+      </Reveal>
+
+      <Reveal delay={0.03}><Eyebrow>Logiciels & solutions numériques · Afrique de l'Ouest</Eyebrow></Reveal>
 
       <Reveal delay={0.05}>
         <h1 className="hero__title">
@@ -99,10 +106,9 @@ const Hero = () => (
 
       <Reveal delay={0.1}>
         <p className="hero__lead">
-          Applications, plateformes et SaaS qui fonctionnent dans les conditions réelles de la
-          sous-région : paiement Mobile Money, commandes sur WhatsApp, réseau instable, règles
-          fiscales et sociales locales. Pour les entreprises, les institutions et les porteurs
-          de projets — en santé, finance, commerce, agriculture, éducation et au-delà.
+          Odoo, CRM, prise de rendez-vous, sites, applications : nous créons les outils dont les
+          PME ont besoin, adaptés aux réalités de la sous-région — Mobile Money, WhatsApp,
+          réseau instable. Vous avez un projet ? Parlons-en.
         </p>
       </Reveal>
 

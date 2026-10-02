@@ -25,7 +25,7 @@ export const ROUTES = [
     path: '/services/creation-site-web',
     title: 'Création de site web pour PME | Wendtech',
     description:
-      'Sites vitrines rapides, responsives et optimisés pour le référencement. ' +
+      'Sites rapides et administrables (CMS), responsives et optimisés pour le référencement. ' +
       'Conçus pour convertir vos visiteurs en clients. Devis gratuit sous 48 h.',
     priority: '0.9',
     changefreq: 'monthly'
@@ -54,6 +54,33 @@ export const ROUTES = [
     description:
       "Ouverture à heure fixe, quotas automatiques, file d'attente et anti-bot. " +
       'Une plateforme qui tient la charge le jour J, même au pic de connexions.',
+    priority: '0.9',
+    changefreq: 'monthly'
+  },
+  {
+    path: '/services/implementation-odoo',
+    title: "Implémentation Odoo pour PME en Afrique de l'Ouest | Wendtech",
+    description:
+      'Installation, paramétrage et formation Odoo : ventes, stocks, facturation, ' +
+      'comptabilité et RH. Reprise de vos données et intégration Mobile Money.',
+    priority: '0.9',
+    changefreq: 'monthly'
+  },
+  {
+    path: '/services/crm-sur-mesure',
+    title: 'CRM sur mesure pour PME | Wendtech',
+    description:
+      'Pipeline de prospects, historique client et relances par WhatsApp, SMS et courriel. ' +
+      'Un CRM adapté à votre cycle de vente, avec accès mobile.',
+    priority: '0.9',
+    changefreq: 'monthly'
+  },
+  {
+    path: '/services/prise-de-rendez-vous',
+    title: 'Prise de rendez-vous en ligne avec rappels SMS et WhatsApp | Wendtech',
+    description:
+      'Calendrier de réservation en ligne pour cliniques, cabinets et salons : rappels ' +
+      'automatiques par SMS et WhatsApp, acompte par Mobile Money.',
     priority: '0.9',
     changefreq: 'monthly'
   }

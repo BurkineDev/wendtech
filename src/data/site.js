@@ -15,6 +15,12 @@ export const CONTACT = {
   location: 'Burkina Faso · Canada'
 }
 
+/** Immatriculation légale, affichée en pied de page. */
+export const LEGAL = {
+  rccm: 'BFBBD012025A1000864',
+  ifu: '00268427X'
+}
+
 /**
  * Réseaux sociaux du pied de page.
  * Une entrée dont l'url vaut '#' n'est pas affichée : renseignez l'adresse
@@ -38,11 +44,13 @@ export const NAV_LINKS = [
 
 /** Mots-clés du bandeau défilant. */
 export const MARQUEE_ITEMS = [
+  'Odoo',
+  'CRM',
+  'Prise de rendez-vous',
+  'CMS',
   'Mobile Money',
   'WhatsApp Business',
   'Applications mobiles',
-  'Plateformes web',
-  'SaaS',
   'Santé numérique',
   'Fintech',
   'AgriTech',

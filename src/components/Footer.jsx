@@ -1,6 +1,6 @@
 import { Facebook, Linkedin, MessageCircle, Phone, Mail } from 'lucide-react'
 import { useNavigate, Link } from 'react-router'
-import { CONTACT, NAV_LINKS, SOCIALS } from '../data/site'
+import { CONTACT, LEGAL, NAV_LINKS, SOCIALS } from '../data/site'
 
 const socialIcons = { Facebook, LinkedIn: Linkedin, WhatsApp: MessageCircle }
 
@@ -9,12 +9,13 @@ const socialIcons = { Facebook, LinkedIn: Linkedin, WhatsApp: MessageCircle }
 const activeSocials = SOCIALS.filter((s) => s.url && s.url !== '#')
 
 const serviceLinks = [
-  { label: 'Création de site web',        to: '/services/creation-site-web' },
+  { label: 'Implémentation Odoo',         to: '/services/implementation-odoo' },
+  { label: 'CRM sur mesure',              to: '/services/crm-sur-mesure' },
+  { label: 'Prise de rendez-vous',        to: '/services/prise-de-rendez-vous' },
+  { label: 'Sites web & CMS',             to: '/services/creation-site-web' },
   { label: 'Site e-commerce',             to: '/services/site-e-commerce' },
   { label: 'Application mobile',          to: '/services/application-mobile' },
-  { label: "Plateforme d'inscriptions",   to: '/services/plateforme-inscriptions' },
-  { label: 'Intégrations & IA',           to: null },
-  { label: 'Conseil & maintenance',       to: null }
+  { label: "Plateforme d'inscriptions",   to: '/services/plateforme-inscriptions' }
 ]
 
 const Footer = () => {
@@ -87,7 +88,9 @@ const Footer = () => {
 
       <div className="container footer__bottom">
         <p>© {new Date().getFullYear()} Wendtech. Tous droits réservés.</p>
-        <p>Entreprise immatriculée au Burkina Faso.</p>
+        <p>
+          Entreprise immatriculée au Burkina Faso · RCCM {LEGAL.rccm} · IFU {LEGAL.ifu}
+        </p>
       </div>
     </footer>
   )

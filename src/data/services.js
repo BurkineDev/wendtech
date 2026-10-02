@@ -1,4 +1,4 @@
-import { Monitor, ShoppingCart, Smartphone, Users } from 'lucide-react'
+import { Monitor, ShoppingCart, Smartphone, Users, Boxes, Contact, CalendarCheck } from 'lucide-react'
 
 /**
  * Contenu des pages de service.
@@ -9,9 +9,93 @@ import { Monitor, ShoppingCart, Smartphone, Users } from 'lucide-react'
  */
 export const SERVICES = [
   {
+    slug: 'implementation-odoo',
+    icon: Boxes,
+    eyebrow: 'Implémentation Odoo',
+    title: 'Toute votre gestion dans un seul outil',
+    lead:
+      'Devis, ventes, stocks, achats, facturation, comptabilité, RH : Odoo réunit tout ce que ' +
+      "vos équipes gèrent aujourd'hui dans des fichiers Excel et des cahiers.",
+    intro: [
+      "Nous installons et paramétrons Odoo selon votre façon de travailler, pas l'inverse : " +
+        'seuls les modules utiles sont activés, avec vos documents, vos taxes et votre plan comptable.',
+      'Nous reprenons vos données existantes (clients, produits, stocks), formons vos équipes ' +
+        "et développons les modules qui manquent, comme le paiement par Mobile Money."
+    ],
+    features: [
+      'Ventes, devis et facturation',
+      'Stocks, achats et inventaires',
+      'Comptabilité et rapports',
+      'RH, congés et notes de frais',
+      'Reprise de vos données existantes',
+      'Modules sur mesure et intégration Mobile Money'
+    ],
+    steps: [
+      { title: 'Diagnostic', text: 'On cartographie vos processus et on choisit les modules utiles.' },
+      { title: 'Paramétrage', text: 'Configuration, reprise des données et tests avec vos équipes.' },
+      { title: 'Démarrage', text: 'Formation, mise en service et accompagnement les premières semaines.' }
+    ]
+  },
+  {
+    slug: 'crm-sur-mesure',
+    icon: Contact,
+    eyebrow: 'CRM sur mesure',
+    title: 'Ne perdez plus un seul client potentiel',
+    lead:
+      'Un prospect qui ne reçoit pas de relance est un client perdu. Un CRM garde la trace de ' +
+      'chaque échange et rappelle à votre équipe qui recontacter, et quand.',
+    intro: [
+      'Nous mettons en place un CRM adapté à votre cycle de vente : pipeline de prospects, ' +
+        'historique de chaque client, tâches et relances pour chaque commercial.',
+      "Les relances partent là où vos clients répondent : WhatsApp, SMS ou courriel. " +
+        "Vous suivez les ventes en cours et les résultats de chaque commercial en un coup d'œil."
+    ],
+    features: [
+      "Pipeline de prospects et d'opportunités",
+      "Fiche client avec tout l'historique",
+      'Relances par WhatsApp, SMS et courriel',
+      'Devis et factures depuis la fiche client',
+      'Tableau de bord des ventes',
+      'Accès mobile pour les équipes terrain'
+    ],
+    steps: [
+      { title: 'Cycle de vente', text: "On formalise les étapes de vos ventes, du premier contact à l'encaissement." },
+      { title: 'Mise en place', text: 'CRM configuré ou développé sur mesure, avec import de vos contacts.' },
+      { title: 'Adoption', text: "Formation de l'équipe et ajustements après les premières semaines d'usage." }
+    ]
+  },
+  {
+    slug: 'prise-de-rendez-vous',
+    icon: CalendarCheck,
+    eyebrow: 'Prise de rendez-vous en ligne',
+    title: 'Vos clients réservent seuls, à toute heure',
+    lead:
+      'Cliniques, cabinets, salons, garages, centres de formation : chaque appel pour fixer un ' +
+      'rendez-vous est du temps pris à votre accueil.',
+    intro: [
+      "Vos clients choisissent un créneau libre depuis leur téléphone, à n'importe quelle heure. " +
+        'Votre agenda se remplit seul, par praticien, par salle ou par service.',
+      'Les rappels automatiques par SMS ou WhatsApp réduisent les rendez-vous oubliés, et un ' +
+        'acompte par Mobile Money peut sécuriser les réservations.'
+    ],
+    features: [
+      'Calendrier en ligne par praticien ou par service',
+      'Réservation 24 h/24 depuis un téléphone',
+      'Rappels automatiques par SMS et WhatsApp',
+      'Acompte par Mobile Money',
+      'Annulation et report par le client',
+      'Synchronisation avec Google Agenda'
+    ],
+    steps: [
+      { title: 'Organisation', text: 'Services, durées, horaires et règles de réservation définis avec vous.' },
+      { title: 'Mise en ligne', text: 'Page de réservation à votre image, reliée à votre site et à WhatsApp.' },
+      { title: 'Suivi', text: 'Statistiques de fréquentation et ajustement des créneaux.' }
+    ]
+  },
+  {
     slug: 'creation-site-web',
     icon: Monitor,
-    eyebrow: 'Création de site web',
+    eyebrow: 'Sites web & CMS',
     title: 'Un site web qui travaille pour vous',
     lead:
       "Un site vitrine n'est pas une plaquette en ligne. C'est votre premier commercial : " +
@@ -19,8 +103,8 @@ export const SERVICES = [
     intro: [
       "Nous concevons des sites rapides, lisibles sur mobile et faciles à faire évoluer. " +
         "Chaque page est pensée pour une intention précise, pas pour remplir de l'espace.",
-      "Vous gardez la main : accès à votre hébergement, à votre nom de domaine et à vos " +
-        "contenus. Aucun verrouillage, aucune dépendance à notre agence."
+      "Vous gardez la main : un CMS simple vous permet de modifier vos pages, vos actualités et " +
+        "vos photos sans nous appeler. Hébergement, nom de domaine et contenus restent à votre nom."
     ],
     features: [
       'Sites responsive, lisibles sur tous les écrans',
@@ -28,7 +112,7 @@ export const SERVICES = [
       'Design moderne, aligné sur votre identité',
       'Temps de chargement optimisé',
       'Formulaire de contact relié à votre boîte courriel',
-      'Formation à la mise à jour de vos contenus'
+      'CMS pour modifier vos contenus vous-même'
     ],
     steps: [
       { title: 'Cadrage', text: "On clarifie à qui s'adresse le site et ce qu'un visiteur doit y faire." },

@@ -25,13 +25,15 @@ const contactInfo = [
 
 const serviceOptions = [
   { value: '', label: 'Sélectionnez un service' },
-  { value: 'site-vitrine', label: 'Site ou plateforme web' },
+  { value: 'odoo', label: 'Implémentation Odoo' },
+  { value: 'crm', label: 'CRM sur mesure' },
+  { value: 'rendez-vous', label: 'Prise de rendez-vous en ligne' },
+  { value: 'site-vitrine', label: 'Site web ou CMS' },
   { value: 'e-commerce', label: 'E-commerce / vente sur WhatsApp' },
   { value: 'app-mobile', label: 'Application mobile' },
   { value: 'integrations', label: 'Intégration Mobile Money, WhatsApp ou IA' },
   { value: 'plateforme-inscriptions', label: "Plateforme d'inscriptions" },
   { value: 'consulting', label: 'Conseil et cadrage de projet' },
-  { value: 'produits', label: 'Bio-Lien ou PayFlow' },
   { value: 'autre', label: 'Autre' }
 ]
 

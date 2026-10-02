@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Lightbulb, Users, Shield, TrendingUp } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import { Eyebrow, PillButton } from './ui/Bits'
+import { LEGAL } from '../data/site'
 
 const values = [
   {
@@ -17,7 +18,7 @@ const values = [
   {
     icon: Shield,
     title: 'Confiance',
-    text: 'Vous gardez la main sur vos comptes, vos données et vos accès. Aucun verrouillage, aucune dépendance.'
+    text: `Entreprise immatriculée au Burkina Faso (RCCM ${LEGAL.rccm}, IFU ${LEGAL.ifu}). Vous gardez la main sur vos comptes, vos données et vos accès.`
   },
   {
     icon: TrendingUp,
