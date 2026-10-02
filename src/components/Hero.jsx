@@ -88,27 +88,28 @@ const Hero = () => (
     <HeroRipples />
 
     <div className="container hero__inner">
-      <Reveal><Eyebrow>Agence digitale internationale</Eyebrow></Reveal>
+      <Reveal><Eyebrow>Logiciels & solutions numériques · Afrique de l'Ouest</Eyebrow></Reveal>
 
       <Reveal delay={0.05}>
         <h1 className="hero__title">
-          La technologie au service de{' '}
-          <span className="accent">votre croissance digitale</span>.
+          Des logiciels pensés pour{' '}
+          <span className="accent">l'Afrique de l'Ouest</span>.
         </h1>
       </Reveal>
 
       <Reveal delay={0.1}>
         <p className="hero__lead">
-          Nous accompagnons les PME et entreprises du monde entier dans leur transformation
-          numérique avec des solutions web et mobiles performantes, abordables et adaptées
-          à chaque contexte.
+          Applications, plateformes et SaaS qui fonctionnent dans les conditions réelles de la
+          sous-région : paiement Mobile Money, commandes sur WhatsApp, réseau instable, règles
+          fiscales et sociales locales. Pour les entreprises, les institutions et les porteurs
+          de projets — en santé, finance, commerce, agriculture, éducation et au-delà.
         </p>
       </Reveal>
 
       <Reveal delay={0.15}>
         <div className="hero__actions">
-          <PillButton href="#contact" variant="btn--lg">Demander un devis</PillButton>
-          <PillButton href="#services" variant="btn--ghost" icon={null}>Nos services</PillButton>
+          <PillButton href="#contact" variant="btn--lg">Parlons de votre projet</PillButton>
+          <PillButton href="#produits" variant="btn--ghost" icon={null}>Nos produits</PillButton>
         </div>
       </Reveal>
 

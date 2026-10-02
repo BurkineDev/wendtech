@@ -10,7 +10,7 @@ const clients = [
 ]
 
 const Clients = () => (
-  <section className="section section--alt" id="clients">
+  <section className="section" id="clients">
     <div className="container">
       <Reveal><Eyebrow>Nos partenaires</Eyebrow></Reveal>
 

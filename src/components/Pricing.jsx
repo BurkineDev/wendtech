@@ -14,7 +14,7 @@ const pricingPlans = [
     name: 'Site E-commerce',
     description: 'Pour vendre en ligne',
     price: 'Sur devis',
-    features: ['Boutique complète', 'Gestion produits', 'Paiements en ligne intégrés', 'Tableau de bord', '3 mois de support'],
+    features: ['Boutique complète', 'Gestion produits', 'Paiement Mobile Money et carte', 'Tableau de bord', '3 mois de support'],
     featured: true
   },
   {
@@ -33,7 +33,7 @@ const Pricing = () => {
   }
 
   return (
-    <section className="section" id="tarifs">
+    <section className="section section--alt" id="tarifs">
       <div className="container">
         <Reveal><Eyebrow>Nos tarifs</Eyebrow></Reveal>
 
@@ -41,8 +41,8 @@ const Pricing = () => {
           <div className="split">
             <h2 className="h2 split__title">Packs PME</h2>
             <p className="split__text">
-              Des offres adaptées à tous les budgets pour démarrer votre transformation
-              digitale. Chaque projet est chiffré après un échange gratuit.
+              Des offres pensées pour les budgets de la région. Chaque projet est chiffré
+              en FCFA après un premier échange gratuit.
             </p>
           </div>
         </Reveal>

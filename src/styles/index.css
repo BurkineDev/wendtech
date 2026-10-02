@@ -374,6 +374,15 @@ button { font: inherit; color: inherit; }
 .client:hover img { filter: none; }
 .client__sector { color: var(--muted-3); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
 
+/* ----------------------------------------------------------------- Secteurs */
+.sector-open {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px 40px; flex-wrap: wrap; margin-top: clamp(20px, 2.2vw, 28px);
+  border-color: var(--line-mid);
+}
+.sector-open > div { display: grid; gap: 12px; max-width: 760px; }
+.sector-open .link-accent { white-space: nowrap; font-size: 18px; }
+
 /* ----------------------------------------------------------------- Produits */
 .product { gap: 20px; }
 .product__media {

@@ -8,10 +8,10 @@ import Marquee from './components/Marquee'
 import About from './components/About'
 import Services from './components/Services'
 import Features from './components/Features'
-import Portfolio from './components/Portfolio'
 import Pricing from './components/Pricing'
 import Clients from './components/Clients'
 import Products from './components/Products'
+import Sectors from './components/Sectors'
 import Contact from './components/Contact'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
@@ -19,13 +19,14 @@ import WhatsAppButton from './components/WhatsAppButton'
 import ScrollProgress from './components/ui/ScrollProgress'
 import ServicePage from './components/ServicePage'
 import useDocumentMeta from './hooks/useDocumentMeta'
+import { ROUTES } from './data/routeMeta'
 
 function HomePage() {
   const [loading, setLoading] = useState(true)
 
   useDocumentMeta({
-    title: 'Agence de développement web et mobile | Wendtech',
-    description: "Wendtech conçoit sites web, boutiques en ligne et applications mobiles pour les PME. Consulting digital, maintenance et plateformes d'inscriptions. Devis gratuit.",
+    title: ROUTES[0].title,
+    description: ROUTES[0].description,
     path: '/'
   })
 
@@ -44,13 +45,13 @@ function HomePage() {
       <main id="contenu">
         <Hero />
         <Marquee />
-        <About />
+        <Products />
+        <Sectors />
         <Services />
         <Features />
-        <Portfolio />
+        <About />
         <Pricing />
         <Clients />
-        <Products />
         <Contact />
         <CTA />
       </main>

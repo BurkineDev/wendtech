@@ -7,31 +7,31 @@ const features = [
   {
     number: '01',
     icon: Target,
-    title: 'Solutions sur mesure',
-    description: 'Des solutions personnalisées adaptées aux besoins spécifiques des PME et commerçants burkinabè.'
+    title: 'Conçu pour le terrain',
+    description: "Mobile Money, WhatsApp, réseau instable, téléphones d'entrée de gamme : c'est notre point de départ, pas une adaptation après coup."
   },
   {
     number: '02',
-    icon: Globe,
-    title: 'Expertise locale',
-    description: 'Nous comprenons les réalités du marché burkinabè et les défis uniques de nos entrepreneurs.'
+    icon: Rocket,
+    title: 'Nos propres produits en production',
+    description: 'Bio-Lien et PayFlow tournent tous les jours. Nous savons ce que demande un logiciel utilisé pour de vrai, au-delà de la mise en ligne.'
   },
   {
     number: '03',
-    icon: Wallet,
-    title: 'Prix accessibles',
-    description: 'Des tarifs transparents et adaptés au budget des entreprises locales, sans compromis sur la qualité.'
+    icon: Globe,
+    title: 'Les règles locales intégrées',
+    description: "Fiscalité, cotisations sociales, protection des données : nous lisons les textes du Burkina, de la Côte d'Ivoire et du Mali, et les appliquons dans le code."
   },
   {
     number: '04',
-    icon: Rocket,
-    title: 'Accompagnement complet',
-    description: "De l'idée au lancement, nous vous guidons à chaque étape de votre transformation digitale."
+    icon: Wallet,
+    title: 'Accessible et sans dépendance',
+    description: 'Des tarifs pensés pour les budgets de la région. Le code, les données et les accès restent les vôtres.'
   }
 ]
 
 const Features = () => (
-  <section className="section has-decor" id="pourquoi">
+  <section className="section section--alt has-decor" id="pourquoi">
     <FloatingDecor src="/decor/orb-ribbed.svg" className="decor--right" spin={70} parallax={80} />
 
     <div className="container">
@@ -43,8 +43,8 @@ const Features = () => (
             Pourquoi choisir <span className="accent">Wendtech</span> ?
           </h2>
           <p className="split__text">
-            Une expertise locale combinée à des technologies modernes pour propulser
-            votre entreprise, quel que soit votre point de départ.
+            Une équipe ouest-africaine qui construit et exploite ses propres logiciels,
+            avec les standards techniques d'aujourd'hui.
           </p>
         </div>
       </Reveal>

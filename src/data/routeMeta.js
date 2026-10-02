@@ -14,10 +14,10 @@ export const SITE = 'https://www.wendtech.site'
 export const ROUTES = [
   {
     path: '/',
-    title: 'Agence de développement web et mobile | Wendtech',
+    title: "Logiciels, applications et SaaS pour l'Afrique de l'Ouest | Wendtech",
     description:
-      "Wendtech conçoit sites web, boutiques en ligne et applications mobiles pour les PME. " +
-      "Consulting digital, maintenance et plateformes d'inscriptions. Devis gratuit.",
+      "Wendtech conçoit applications, plateformes et SaaS pour l'Afrique de l'Ouest : " +
+      'Mobile Money, WhatsApp, santé, finance, commerce, agriculture, éducation. Devis gratuit.',
     priority: '1.0',
     changefreq: 'weekly'
   },
@@ -34,8 +34,8 @@ export const ROUTES = [
     path: '/services/site-e-commerce',
     title: 'Création de boutique en ligne et site e-commerce | Wendtech',
     description:
-      'Boutiques en ligne complètes : catalogue produits, paiements intégrés, ' +
-      'gestion des stocks et tableau de bord. Vendez en ligne sans friction.',
+      'Boutiques en ligne complètes : commandes sur WhatsApp, paiement Orange Money, ' +
+      'Moov Money, Wave ou à la livraison, gestion des stocks. Vendez en ligne sans friction.',
     priority: '0.9',
     changefreq: 'monthly'
   },
@@ -43,8 +43,8 @@ export const ROUTES = [
     path: '/services/application-mobile',
     title: "Développement d'application mobile Android et iOS | Wendtech",
     description:
-      'Applications mobiles natives et hybrides pour gérer vos stocks, vos ventes ' +
-      'et vos services. Interface intuitive, paiements intégrés, support inclus.',
+      'Applications Android et iOS pensées pour la région : Mobile Money, fonctionnement ' +
+      'hors connexion, notifications SMS et WhatsApp. Support inclus.',
     priority: '0.9',
     changefreq: 'monthly'
   },

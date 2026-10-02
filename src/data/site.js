@@ -28,22 +28,26 @@ export const SOCIALS = [
 
 export const NAV_LINKS = [
   { id: 'accueil',   label: 'Accueil' },
-  { id: 'apropos',   label: 'À propos' },
-  { id: 'services',  label: 'Services' },
-  { id: 'portfolio', label: 'Portfolio' },
-  { id: 'tarifs',    label: 'Tarifs' },
   { id: 'produits',  label: 'Produits' },
+  { id: 'secteurs',  label: 'Secteurs' },
+  { id: 'services',  label: 'Services' },
+  { id: 'apropos',   label: 'À propos' },
+  { id: 'tarifs',    label: 'Tarifs' },
   { id: 'contact',   label: 'Contact' }
 ]
 
 /** Mots-clés du bandeau défilant. */
 export const MARQUEE_ITEMS = [
-  'Développement Web',
-  'Applications Mobiles',
-  'Consulting Digital',
-  'E-commerce',
-  "Plateforme d'Inscriptions",
-  'Maintenance & Hébergement'
+  'Mobile Money',
+  'WhatsApp Business',
+  'Applications mobiles',
+  'Plateformes web',
+  'SaaS',
+  'Santé numérique',
+  'Fintech',
+  'AgriTech',
+  'EdTech',
+  'IA appliquée'
 ]
 
 /** Chiffres du héro — animés de 0 à la valeur cible. */

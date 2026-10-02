@@ -13,8 +13,8 @@ const serviceLinks = [
   { label: 'Site e-commerce',             to: '/services/site-e-commerce' },
   { label: 'Application mobile',          to: '/services/application-mobile' },
   { label: "Plateforme d'inscriptions",   to: '/services/plateforme-inscriptions' },
-  { label: 'Consulting digital',          to: null },
-  { label: 'Maintenance & hébergement',   to: null }
+  { label: 'Intégrations & IA',           to: null },
+  { label: 'Conseil & maintenance',       to: null }
 ]
 
 const Footer = () => {
@@ -36,8 +36,8 @@ const Footer = () => {
             WEND<span>TECH</span>
           </a>
           <p className="muted">
-            Votre partenaire digital international. Nous accompagnons les PME et entreprises
-            dans leur transformation numérique avec des solutions innovantes et accessibles.
+            Des logiciels pensés pour l'Afrique de l'Ouest : produits SaaS, applications et
+            plateformes pour les entreprises, les institutions et les porteurs de projets.
           </p>
           {activeSocials.length > 0 && (
             <div className="footer__social">

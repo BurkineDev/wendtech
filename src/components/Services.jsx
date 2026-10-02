@@ -1,4 +1,4 @@
-import { Monitor, Smartphone, BarChart3, Wrench, Users, Asterisk } from 'lucide-react'
+import { Monitor, Smartphone, ShoppingCart, Plug, Users, Compass, Asterisk } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import { Link } from 'react-router'
 import { Eyebrow } from './ui/Bits'
@@ -8,70 +8,83 @@ const services = [
   {
     number: '01',
     icon: Monitor,
-    title: 'Développement Web',
+    title: 'Plateformes & sites web',
     href: '/services/creation-site-web',
-    description: 'Sites vitrines, e-commerce et plateformes personnalisées pour une présence en ligne professionnelle.',
+    description: 'Sites, plateformes métiers et SaaS rapides, même sur une connexion 3G.',
     features: [
-      'Sites responsive (mobile-friendly)',
-      'Optimisation SEO',
-      'Design moderne et attractif',
-      'Performance optimale'
+      'Paiement Mobile Money et carte intégré',
+      'Pages légères, rapides sur réseau lent',
+      'Référencement naturel',
+      'Domaine et hébergement à votre nom'
     ]
   },
   {
     number: '02',
     icon: Smartphone,
-    title: 'Applications Mobiles',
+    title: 'Applications mobiles',
     href: '/services/application-mobile',
-    description: 'Apps Android/iOS pour gestion de stocks, ventes en ligne ou services marchands.',
+    description: "Apps Android et iOS pensées pour les téléphones réellement utilisés par vos clients.",
     features: [
-      'Applications natives et hybrides',
-      'Interface intuitive',
-      'Intégration passerelles de paiement',
-      'Support et maintenance'
+      'Android en priorité, iOS si besoin',
+      'Fonctionnement hors connexion',
+      'Notifications push, SMS et WhatsApp',
+      'Publication sur les stores'
     ]
   },
   {
     number: '03',
-    icon: BarChart3,
-    title: 'Consulting Digital',
-    description: 'Stratégie numérique, marketing digital et formation pour digitaliser votre entreprise.',
+    icon: ShoppingCart,
+    title: 'E-commerce & vente sociale',
+    href: '/services/site-e-commerce',
+    description: 'Vendre en ligne comme on achète ici : via WhatsApp, TikTok et Instagram.',
     features: [
-      'Audit digital complet',
-      'Stratégie marketing',
-      'Formation équipes',
-      'Accompagnement personnalisé'
+      'Commandes reçues sur WhatsApp',
+      'Orange Money, Moov Money, Wave',
+      'Livraison et paiement à la livraison',
+      'Gestion des stocks et des commandes'
     ]
   },
   {
     number: '04',
-    icon: Wrench,
-    title: 'Maintenance & Hébergement',
-    description: 'Suivi technique continu, mises à jour et sécurité pour vos solutions digitales.',
+    icon: Plug,
+    title: 'Intégrations & IA appliquée',
+    description: 'Connecter vos outils aux services qui comptent dans la région, et automatiser le reste.',
     features: [
-      'Hébergement sécurisé',
-      'Sauvegardes automatiques',
-      'Mises à jour régulières',
-      'Support technique 24/7'
+      'API Mobile Money et passerelles de paiement',
+      'WhatsApp Business et envoi de SMS',
+      'Assistants IA et chatbots WhatsApp',
+      'Automatisation de tâches répétitives'
     ]
   },
   {
     number: '05',
     icon: Users,
-    title: "Plateforme d'Inscriptions",
+    title: "Plateforme d'inscriptions",
     href: '/services/plateforme-inscriptions',
-    description: "Ouverture à heure fixe, quota automatique, file d'attente et anti-bot : une plateforme stable même au rush.",
+    description: "Ouverture à heure fixe, quotas, file d'attente et anti-bot : une plateforme stable même au rush.",
     features: [
-      'Anti-surcharge garantie',
+      'Anti-surcharge',
       'Quotas automatiques',
       "File d'attente intelligente",
-      'Jour J prêt'
+      'Prête pour le jour J'
+    ]
+  },
+  {
+    number: '06',
+    icon: Compass,
+    title: 'Conseil, maintenance & suivi',
+    description: "Cadrer le projet avant de coder, puis le faire vivre une fois en ligne.",
+    features: [
+      'Audit et cadrage de projet',
+      'Protection des données personnelles',
+      'Maintenance, sauvegardes et sécurité',
+      'Formation de vos équipes'
     ]
   }
 ]
 
 const Services = () => (
-  <section className="section section--alt has-decor" id="services">
+  <section className="section has-decor" id="services">
     <FloatingDecor src="/decor/glow-shape.svg" className="decor--left" parallax={60} pulse />
 
     <div className="container">
@@ -79,10 +92,10 @@ const Services = () => (
 
       <Reveal delay={0.05}>
         <div className="split">
-          <h2 className="h2 split__title">Des services numériques pour faire grandir votre entreprise</h2>
+          <h2 className="h2 split__title">Ce que nous construisons pour vous</h2>
           <p className="split__text">
-            Du code à la visibilité : une seule équipe pour votre site, vos applications,
-            vos outils internes et votre stratégie digitale.
+            Une seule équipe, du cadrage à la mise en production, avec les intégrations
+            dont la sous-région a besoin : Mobile Money, WhatsApp, SMS, hors connexion.
           </p>
         </div>
       </Reveal>
@@ -90,7 +103,6 @@ const Services = () => (
       <div className="cards cards--3">
         {services.map((service, i) => (
           <Reveal
-            as={service.href ? 'div' : 'div'}
             className={`card${service.href ? ' card--hover' : ''}`}
             key={service.number}
             delay={(i % 3) * 0.07}

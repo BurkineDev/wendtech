@@ -7,7 +7,7 @@ const values = [
   {
     icon: Lightbulb,
     title: 'Innovation continue',
-    text: "Nous suivons l'évolution des technologies pour proposer des solutions actuelles, pas des recettes dépassées."
+    text: "IA, paiement mobile, applications hors connexion : nous suivons les technologies qui changent vraiment la donne ici."
   },
   {
     icon: Users,
@@ -56,11 +56,11 @@ const About = () => (
   <section className="section" id="apropos">
     <div className="container two-col">
       <div>
-        <Reveal><Eyebrow>À propos de l'agence</Eyebrow></Reveal>
+        <Reveal><Eyebrow>À propos de Wendtech</Eyebrow></Reveal>
         <Reveal delay={0.05}>
           <h2 className="h2">
-            Wendtech, une agence digitale{' '}
-            <span className="accent">internationale</span> au service des PME.
+            Une équipe tech qui construit{' '}
+            <span className="accent">pour sa région</span>.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
@@ -76,11 +76,12 @@ const About = () => (
       <div>
         <Reveal>
           <p className="muted-2" style={{ lineHeight: 1.7, marginBottom: 44 }}>
-            Wendtech est une agence digitale internationale, spécialisée dans le développement
-            web et mobile, ainsi que le consulting pour les PME et les entreprises de toutes
-            tailles, partout dans le monde. Fondée avec la vision de démocratiser le numérique
-            pour tous, nous croyons que chaque commerçant, artisan ou entrepreneur mérite une
-            présence en ligne professionnelle pour booster ses ventes et sa visibilité.
+            Basée au Burkina Faso, avec une présence au Canada, Wendtech conçoit des logiciels
+            pour l'Afrique de l'Ouest. Nous développons nos propres produits — Bio-Lien pour
+            le commerce en ligne, PayFlow pour la paie — et nous accompagnons entreprises,
+            institutions, ONG et porteurs de projets dans la santé, la finance, le commerce,
+            l'agriculture et l'éducation. Notre conviction : le numérique doit s'adapter aux
+            réalités de la région, pas l'inverse.
           </p>
         </Reveal>
 

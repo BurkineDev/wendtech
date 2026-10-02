@@ -25,11 +25,13 @@ const contactInfo = [
 
 const serviceOptions = [
   { value: '', label: 'Sélectionnez un service' },
-  { value: 'site-vitrine', label: 'Site Vitrine' },
-  { value: 'e-commerce', label: 'Site E-commerce' },
-  { value: 'app-mobile', label: 'Application Mobile' },
-  { value: 'consulting', label: 'Consulting Digital' },
-  { value: 'plateforme-inscriptions', label: "Plateforme d'Inscriptions" },
+  { value: 'site-vitrine', label: 'Site ou plateforme web' },
+  { value: 'e-commerce', label: 'E-commerce / vente sur WhatsApp' },
+  { value: 'app-mobile', label: 'Application mobile' },
+  { value: 'integrations', label: 'Intégration Mobile Money, WhatsApp ou IA' },
+  { value: 'plateforme-inscriptions', label: "Plateforme d'inscriptions" },
+  { value: 'consulting', label: 'Conseil et cadrage de projet' },
+  { value: 'produits', label: 'Bio-Lien ou PayFlow' },
   { value: 'autre', label: 'Autre' }
 ]
 

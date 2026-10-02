@@ -47,20 +47,20 @@ export const SERVICES = [
     intro: [
       'Nous construisons des boutiques complètes : catalogue, panier, paiements intégrés, ' +
         'suivi des commandes et gestion des stocks, dans une interface que vous administrez seul.',
-      "Le parcours d'achat est simplifié au maximum : moins d'étapes entre l'envie et la commande, " +
-        'et un tunnel qui fonctionne aussi bien sur téléphone que sur ordinateur.'
+      "Le parcours d'achat suit les habitudes de vos clients : commande sur WhatsApp, paiement " +
+        "par Orange Money, Moov Money ou Wave, ou à la livraison. Moins d'étapes, plus de ventes."
     ],
     features: [
       'Catalogue produits avec variantes et stocks',
-      'Paiements en ligne intégrés',
+      'Paiement Mobile Money, carte ou à la livraison',
+      'Commandes reçues sur WhatsApp',
       'Tableau de bord des commandes',
       'Gestion des livraisons',
-      'Comptes clients et historique',
       'Suivi des ventes et des produits qui marchent'
     ],
     steps: [
       { title: 'Catalogue', text: 'Structure des produits, des catégories et des options de livraison.' },
-      { title: 'Paiement', text: 'Intégration des moyens de paiement adaptés à votre marché.' },
+      { title: 'Paiement', text: 'Mobile Money, carte ou paiement à la livraison, selon vos clients.' },
       { title: 'Rodage', text: 'Commandes de test de bout en bout avant ouverture au public.' }
     ]
   },
@@ -73,17 +73,18 @@ export const SERVICES = [
       'Une application se justifie quand elle fait quelque chose que le web ne fait pas : ' +
       'notifications, usage hors ligne, accès rapide au quotidien.',
     intro: [
-      'Nous développons des applications Android et iOS pour la gestion de stocks, la vente ' +
-        'en ligne ou les services marchands — natives ou hybrides selon ce que votre projet exige.',
+      'Nous développons des applications Android et iOS pour la vente, la gestion de stocks, ' +
+        "la santé ou la collecte de données terrain — pensées pour les téléphones d'entrée de gamme " +
+        'et les réseaux instables.',
       "Nous vous dirons franchement si un site web mobile suffit : payer une application " +
         "dont vous n'avez pas besoin ne sert personne."
     ],
     features: [
       'Applications natives et hybrides',
       'Interface pensée pour un usage à une main',
-      'Intégration des passerelles de paiement',
-      'Notifications push',
-      'Fonctionnement en connexion limitée',
+      'Paiement Mobile Money intégré',
+      'Notifications push, SMS et WhatsApp',
+      'Fonctionnement hors connexion, synchronisation au retour du réseau',
       'Publication sur les magasins et maintenance'
     ],
     steps: [
