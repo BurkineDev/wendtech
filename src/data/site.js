@@ -6,7 +6,7 @@
 export const CONTACT = {
   phoneBF: { display: '+226 65 17 07 78', href: 'tel:+22665170778' },
   phoneCA: { display: '+1 819 219 0558', href: 'tel:+18192190558' },
-  email:   { display: 'saristide99@gmail.com', href: 'mailto:saristide99@gmail.com' },
+  email:   { display: 'saristide99@wendtech.site', href: 'mailto:saristide99@wendtech.site' },
   whatsapp: {
     number: '22665170778',
     url: 'https://wa.me/22665170778?text=' +
